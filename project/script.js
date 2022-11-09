@@ -6,7 +6,7 @@ const userInput = {
     endInput: document.querySelector("#in-pos-end"),
 };
 
-const numberInputs = [38,5,4564];
+const numberInputs = [5, 10, 15];
 
 //Creates an array of mutiplication tables
 function createTimesTable(numberInputs, startPos, endPos){
