@@ -13,7 +13,7 @@ const table = {
     btnAdd: document.querySelector("#btn-add-col"),
     btnRemove: document.querySelector("#btn-remove-col"),
     columnRoot: document.querySelectorAll(".column-root"),
-    tableBody: document.querySelector("#table-root"),
+    tableBody: document.querySelector("#table-body"),
 
     createColum: function(){
         const cloneColumn = this.columnRoot[1].cloneNode(true);
