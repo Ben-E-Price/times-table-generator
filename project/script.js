@@ -1,3 +1,5 @@
+const numberInputs = [5, 10, 15];
+
 //User input elements
 const userInput = {
     btnSubmit: document.querySelector("#btn-submit"),
@@ -6,7 +8,13 @@ const userInput = {
     endInput: document.querySelector("#in-pos-end"),
 };
 
-const numberInputs = [5, 10, 15];
+//Table elements + functionality
+const table = {
+    btnAdd: document.querySelector("btn-add-col"),
+    btnRemove: document.querySelector("btn-remove-all"),
+    columnRoot: document.querySelectorAll(".column-root"),
+
+};
 
 //Creates an array of mutiplication tables
 function createTimesTable(numberInputs, startPos, endPos){
@@ -37,4 +45,4 @@ function createTimesTable(numberInputs, startPos, endPos){
 };
 
 const timeTable = createTimesTable(numberInputs, 1, 10);
-console.log(timeTable)
+console.log(timeTable, table.columnRoot)

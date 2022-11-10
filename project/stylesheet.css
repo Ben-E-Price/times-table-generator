@@ -3,11 +3,13 @@
     margin: 0px;
 }
 
+
+/* Table Stlying */
 /* table{
     display: table;
 } */
 
-.colum-root{
+.column-root{
     display: table-cell;
 }
 
