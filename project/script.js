@@ -12,13 +12,19 @@ const userInput = {
 const table = {
     btnAdd: document.querySelector("#btn-add-col"),
     btnRemove: document.querySelector("#btn-remove-col"),
-    columnRoot: document.querySelectorAll(".column-root"),
+    // columnRoot: document.querySelectorAll(".column-root"),
+    columnRoot: document.getElementsByClassName("column-root"),
     tableBody: document.querySelector("#table-body"),
 
-    createColum: function(){
+    createColumn: function(){
+        const length = this.columnRoot.length
         const cloneColumn = this.columnRoot[1].cloneNode(true);
         this.tableBody.appendChild(cloneColumn);
     },
+
+    removeColumn: function(){
+        this.columnRoot[this.columnRoot.length -1].remove()
+    }
 };
 
 //Creates an array of mutiplication tables
@@ -50,7 +56,8 @@ function createTimesTable(numberInputs, startPos, endPos){
 };
 
 const timeTable = createTimesTable(numberInputs, 1, 10);
-console.log(timeTable, table.btnAdd)
+console.log(timeTable, table.columnRoot)
 
-//Button Clicks
-table.btnAdd.addEventListener("click", function(){table.createColum()});
+//Click Events
+table.btnAdd.addEventListener("click", function(){table.createColumn()});
+table.btnRemove.addEventListener("click", function(){table.removeColumn()});
