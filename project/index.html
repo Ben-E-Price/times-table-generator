@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Times Tabel Generator</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
     <head></head>
@@ -16,14 +17,34 @@
                 <input id="in-pos-start">
                 <input id="in-pos-end">
             </span>
+        </div>
 
-            <span id="controls-table">
+        <div id="table-wrapper">
+            <div id="table-inputs">
                 <h3>Number of Colums</h3>
                 <button id="btn-add-col">+</button>
                 <button id="btn-remove-col">-</button>
-            </span>
+            </div>
+
+            <table id="table-root">
+
+                <tr id="pos-col" class="colum-root">
+                    <th>Positions</th>
+                    <td class="row">Row 1</td>
+                    <td class="row">Row 2</td>
+                    <td class="row">Row 3</td>
+                    <td class="row">Row 4</td>
+                </tr>
+
+                <tr class="colum-root">
+                    <th>Table 1</th>
+                    <td class="row">Row 1</td>
+                    <td class="row">Row 2</td>
+                    <td class="row">Row 3</td>
+                    <td class="row">Row 4</td>
+                </tr>                
+            </table>
         </div>
-        <div id="table-wrapper"></div>
     </main>
 
     <script src="script.js"></script>

@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+/* table{
+    display: table;
+} */
+
+.colum-root{
+    display: table-cell;
+}
+
+.row{
+    display: block;
+}
