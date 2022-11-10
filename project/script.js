@@ -10,10 +10,15 @@ const userInput = {
 
 //Table elements + functionality
 const table = {
-    btnAdd: document.querySelector("btn-add-col"),
-    btnRemove: document.querySelector("btn-remove-all"),
+    btnAdd: document.querySelector("#btn-add-col"),
+    btnRemove: document.querySelector("#btn-remove-col"),
     columnRoot: document.querySelectorAll(".column-root"),
+    tableBody: document.querySelector("#table-root"),
 
+    createColum: function(){
+        const cloneColumn = this.columnRoot[1].cloneNode(true);
+        this.tableBody.appendChild(cloneColumn);
+    },
 };
 
 //Creates an array of mutiplication tables
@@ -45,4 +50,7 @@ function createTimesTable(numberInputs, startPos, endPos){
 };
 
 const timeTable = createTimesTable(numberInputs, 1, 10);
-console.log(timeTable, table.columnRoot)
+console.log(timeTable, table.btnAdd)
+
+//Button Clicks
+table.btnAdd.addEventListener("click", function(){table.createColum()});
