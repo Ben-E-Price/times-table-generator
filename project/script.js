@@ -11,9 +11,12 @@ const calcInputs = {
 //Table elements + functionality
 const table = {
 
+    //Input elements regarding table creation
     inputs: {
         btnAdd: document.querySelector("#btn-add-col"),
         btnRemove: document.querySelector("#btn-remove-col"),
+        btnCreateCols: document.querySelector("#btn-create-cols"),
+        inNumOfCols: document.querySelector("#in-num-of-cols"),
     },
 
     tableBody: document.querySelector("#table-body"),
@@ -32,6 +35,14 @@ const table = {
 
         if(numOfCols > 2){
             this.columnRoot[numOfCols -1].remove()
+        };
+    },
+
+    createMultiCols: function(){
+        const numOfCols = Number(this.inputs.inNumOfCols.value);
+
+        for(let i = 0; i < numOfCols; i ++){
+           this.createColumn();
         };
     },
 };
@@ -70,3 +81,4 @@ console.log(timeTable, table.columnRoot)
 //Click Events
 table.inputs.btnAdd.addEventListener("click", function(){table.createColumn()});
 table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()});
+table.inputs.btnCreateCols.addEventListener("click", function(){table.createMultiCols()});
