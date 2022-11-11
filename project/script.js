@@ -1,8 +1,8 @@
 const numberInputs = [5, 10, 15];
 
 //User input elements
-const userInput = {
-    btnSubmit: document.querySelector("#btn-submit"),
+const calcInputs = {
+    btnCalc: document.querySelector("#btn-calc"),
     numInput: document.querySelector("#in-multi-num"),
     startInput: document.querySelector("#in-pos-start"),
     endInput: document.querySelector("#in-pos-end"),
@@ -10,10 +10,13 @@ const userInput = {
 
 //Table elements + functionality
 const table = {
-    btnAdd: document.querySelector("#btn-add-col"),
-    btnRemove: document.querySelector("#btn-remove-col"),
+
+    inputs: {
+        btnAdd: document.querySelector("#btn-add-col"),
+        btnRemove: document.querySelector("#btn-remove-col"),
+    },
+
     tableBody: document.querySelector("#table-body"),
-    // columnRoot: document.querySelectorAll(".column-root"),
     columnRoot: document.getElementsByClassName("column-root"),
 
     //Creates column
@@ -26,6 +29,7 @@ const table = {
     //Removes columns - Prevents intial 2 being removed
     removeColumn: function(){
         const numOfCols = this.columnRoot.length;
+
         if(numOfCols > 2){
             this.columnRoot[numOfCols -1].remove()
         };
@@ -64,5 +68,5 @@ const timeTable = createTimesTable(numberInputs, 1, 10);
 console.log(timeTable, table.columnRoot)
 
 //Click Events
-table.btnAdd.addEventListener("click", function(){table.createColumn()});
-table.btnRemove.addEventListener("click", function(){table.removeColumn()});
+table.inputs.btnAdd.addEventListener("click", function(){table.createColumn()});
+table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()});
