@@ -1,4 +1,5 @@
 const numberInputs = [5, 10, 15];
+const inputElements = document.getElementsByClassName("num-input"); //Input feilds used to enter numbers
 
 //User input elements
 const calcInputs = {
@@ -32,12 +33,13 @@ const table = {
     //Removes columns - Prevents intial 2 being removed
     removeColumn: function(){
         const numOfCols = this.columnRoot.length;
-
+    
         if(numOfCols > 2){
             this.columnRoot[numOfCols -1].remove()
         };
     },
 
+    //Creates x number of colums
     createMultiCols: function(){
         const numOfCols = Number(this.inputs.inNumOfCols.value);
 
@@ -45,6 +47,17 @@ const table = {
            this.createColumn();
         };
     },
+};
+
+//Prevents any charecter that is not 0 - 9 being enterd within input fields 
+function inputBlock(eventIn) {
+    const validChars = RegExp(["[0-9]"]);
+
+    if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
+        return        
+    } else {
+        eventIn.preventDefault();
+    };
 };
 
 //Creates an array of mutiplication tables
@@ -76,9 +89,15 @@ function createTimesTable(numberInputs, startPos, endPos){
 };
 
 const timeTable = createTimesTable(numberInputs, 1, 10);
-console.log(timeTable, table.columnRoot)
+console.log()
 
 //Click Events
 table.inputs.btnAdd.addEventListener("click", function(){table.createColumn()});
 table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()});
 table.inputs.btnCreateCols.addEventListener("click", function(){table.createMultiCols()});
+
+//Input Blocking
+    
+for(let i = 0; i < inputElements.length -1; i++){
+    inputElements[i].addEventListener("keydown", inputBlock);
+};
