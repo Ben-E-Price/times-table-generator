@@ -28,11 +28,22 @@ const table = {
     //Creates column
     createColumn: function(){
         const length = this.columnRoot.length
-        const cloneColumn = this.columnRoot[1].cloneNode(true);
-        const cloneInMultiNum = this.inMultiNum[0].cloneNode(true);
 
-        this.tableBody.appendChild(cloneColumn);
-        this.inMultiNumRoot.appendChild(cloneInMultiNum);
+        //Creates table column elements
+        const createTalbeElement = () => {
+            const cloneColumn = this.columnRoot[1].cloneNode(true);
+            this.tableBody.appendChild(cloneColumn);
+        };
+
+        //Creates multiplication input elements
+        const createInputElements = () => {
+            const cloneInMultiNum = this.inMultiNum[0].cloneNode(true);
+            cloneInMultiNum.addEventListener("keydown", inputBlock);
+            this.inMultiNumRoot.appendChild(cloneInMultiNum);
+        };
+
+        createTalbeElement();
+        createInputElements();
     },
 
     //Removes columns - Prevents intial 2 being removed
@@ -104,6 +115,10 @@ table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()
 table.inputs.btnCreateCols.addEventListener("click", function(){table.createMultiCols()});
 
 //Input Blocking   
-for(let i = 0; i < inputElements.length; i++){
-    inputElements[i].addEventListener("keydown", inputBlock);
-};
+// for(let i = 0; i < inputElements.length; i++){
+//     inputElements[i].addEventListener("keydown", inputBlock);
+// };
+
+for(const input of inputElements){
+    input.addEventListener("keydown", inputBlock);
+}
