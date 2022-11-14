@@ -16,3 +16,7 @@
 .row{
     display: block;
 }
+
+.in-multi-num{
+    width: 100px;
+}

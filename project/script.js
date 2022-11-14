@@ -22,6 +22,7 @@ const table = {
 
     tableBody: document.querySelector("#table-body"),
     columnRoot: document.getElementsByClassName("column-root"),
+    row : document.getElementsByClassName("row"),
 
     //Creates column
     createColumn: function(){
@@ -47,6 +48,8 @@ const table = {
            this.createColumn();
         };
     },
+
+
 };
 
 //Prevents any charecter that is not 0 - 9 being enterd within input fields 
@@ -96,8 +99,7 @@ table.inputs.btnAdd.addEventListener("click", function(){table.createColumn()});
 table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()});
 table.inputs.btnCreateCols.addEventListener("click", function(){table.createMultiCols()});
 
-//Input Blocking
-    
-for(let i = 0; i < inputElements.length -1; i++){
+//Input Blocking   
+for(let i = 0; i < inputElements.length; i++){
     inputElements[i].addEventListener("keydown", inputBlock);
 };
