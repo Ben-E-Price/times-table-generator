@@ -17,6 +17,10 @@
     display: block;
 }
 
+#multi-num-in-wrapper{
+    width: max-content;
+}
+
 .in-multi-num{
     width: 100px;
 }

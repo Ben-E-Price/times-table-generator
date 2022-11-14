@@ -19,24 +19,29 @@ const table = {
         btnCreateCols: document.querySelector("#btn-create-cols"),
         inNumOfCols: document.querySelector("#in-num-of-cols"),
     },
-
+    
+    inMultiNum: document.getElementsByClassName("multi-num-cont"),
+    inMultiNumRoot: document.querySelector("#multi-num-in-wrapper"),
     tableBody: document.querySelector("#table-body"),
     columnRoot: document.getElementsByClassName("column-root"),
-    row : document.getElementsByClassName("row"),
 
     //Creates column
     createColumn: function(){
         const length = this.columnRoot.length
         const cloneColumn = this.columnRoot[1].cloneNode(true);
+        const cloneInMultiNum = this.inMultiNum[0].cloneNode(true);
+
         this.tableBody.appendChild(cloneColumn);
+        this.inMultiNumRoot.appendChild(cloneInMultiNum);
     },
 
     //Removes columns - Prevents intial 2 being removed
     removeColumn: function(){
         const numOfCols = this.columnRoot.length;
-    
+        
         if(numOfCols > 2){
             this.columnRoot[numOfCols -1].remove()
+            this.inMultiNum[this.inMultiNum.length-1].remove();
         };
     },
 
@@ -48,7 +53,6 @@ const table = {
            this.createColumn();
         };
     },
-
 
 };
 
