@@ -20,7 +20,7 @@ const table = {
         inNumOfCols: document.querySelector("#in-num-of-cols"),
     },
     
-    inMultiNum: document.getElementsByClassName("multi-num-cont"),
+    inMultiNumCont: document.getElementsByClassName("multi-num-cont"),
     inMultiNumRoot: document.querySelector("#multi-num-in-wrapper"),
     tableBody: document.querySelector("#table-body"),
     columnRoot: document.getElementsByClassName("column-root"),
@@ -38,7 +38,7 @@ const table = {
 
         //Creates multiplication input elements
         const createInputElements = () => {
-            const cloneInMultiNum = this.inMultiNum[0].cloneNode(true);
+            const cloneInMultiNum = this.inMultiNumCont[0].cloneNode(true);
             cloneInMultiNum.addEventListener("keydown", inputBlock);
             this.inMultiNumRoot.appendChild(cloneInMultiNum);
         };
@@ -66,7 +66,7 @@ const table = {
         
         if(numOfCols > 2){
             this.columnRoot[numOfCols -1].remove()
-            this.inMultiNum[this.inMultiNum.length-1].remove();
+            this.inMultiNumCont[this.inMultiNumCont.length-1].remove();
         };
     },
 
@@ -92,7 +92,18 @@ function inputBlock(eventIn) {
 
 //Calculates row content - Adds rows to UI
 function calculateRows(){
-    const numberInputs = [5, 10, 15];
+
+    //Retrieves user inputs - Returns as an array
+    function getMultiNumInputs(){
+        const inputFields = document.querySelectorAll(".in-multi-num");
+        const numberInputs = [];
+
+        for(const input in inputFields){
+            numberInputs[input] = inputFields[input].value;
+        };
+
+        return numberInputs
+    };
 
     //Creates an array of mutiplication tables
     function createTimesTable(numberInputs, startPos, endPos){
