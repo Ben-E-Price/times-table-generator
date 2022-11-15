@@ -29,6 +29,7 @@ const table = {
     //Creates column
     createColumn: function(){
         const length = this.columnRoot.length
+        const colLimit = 10;
 
         //Creates table column elements
         const createTalbeElement = () => {
@@ -43,8 +44,12 @@ const table = {
             this.inMultiNumRoot.appendChild(cloneInMultiNum);
         };
 
-        createTalbeElement();
-        createInputElements();
+        //Limits the number of columns that can be created
+        if(length <= colLimit){
+            createTalbeElement();
+            createInputElements();
+        };
+
     },
 
     //Creates x number of colums
@@ -66,6 +71,7 @@ const table = {
         };
     },
 
+    //Removes x number of columns
     resetTable: function(){
         for(const col in this.columnRoot){
             this.removeColumn();
