@@ -17,6 +17,7 @@ const table = {
         btnAdd: document.querySelector("#btn-add-col"),
         btnRemove: document.querySelector("#btn-remove-col"),
         btnCreateCols: document.querySelector("#btn-create-cols"),
+        btnResetCols: document.querySelector("#btn-reset-table"),
         inNumOfCols: document.querySelector("#in-num-of-cols"),
     },
     
@@ -115,10 +116,6 @@ table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()
 table.inputs.btnCreateCols.addEventListener("click", function(){table.createMultiCols()});
 
 //Input Blocking   
-// for(let i = 0; i < inputElements.length; i++){
-//     inputElements[i].addEventListener("keydown", inputBlock);
-// };
-
 for(const input of inputElements){
     input.addEventListener("keydown", inputBlock);
 }
