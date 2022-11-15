@@ -1,4 +1,3 @@
-const numberInputs = [5, 10, 15];
 const inputElements = document.getElementsByClassName("num-input"); //Input feilds used to enter numbers
 
 //User input elements
@@ -91,36 +90,40 @@ function inputBlock(eventIn) {
     };
 };
 
-//Creates an array of mutiplication tables
-function createTimesTable(numberInputs, startPos, endPos){
-    startPos = startPos -1;
-    const numOfPostions = endPos - startPos;
-    let timeTable = [];
-    
-    //Creates multiples of multiplyNum value 
-    function multiplyNumbers(multiplyNum, numOfPostions){
-        let singleTimeTable = [];
-        let positionValue = multiplyNum;
+//Calculates row content - Adds rows to UI
+function calculateRows(){
+    const numberInputs = [5, 10, 15];
 
-        for(let i = 0; i < numOfPostions; i++){
-            singleTimeTable[i] = positionValue;
-            positionValue = positionValue + multiplyNum
+    //Creates an array of mutiplication tables
+    function createTimesTable(numberInputs, startPos, endPos){
+        startPos = startPos -1;
+        const numOfPostions = endPos - startPos;
+        let timeTable = [];
+        
+        //Creates multiples of multiplyNum value 
+        function multiplyNumbers(multiplyNum, numOfPostions){
+            let singleTimeTable = [];
+            let positionValue = multiplyNum;
+
+            for(let i = 0; i < numOfPostions; i++){
+                singleTimeTable[i] = positionValue;
+                positionValue = positionValue + multiplyNum
+            };
+
+            return singleTimeTable;
         };
 
-        return singleTimeTable;
+        //Inserts individual number mutiplication tables into timeTable - Runs for each input
+        for(const num in numberInputs){
+            let multiNum = numberInputs[num];
+            timeTable[num] = multiplyNumbers(multiNum, numOfPostions); 
+        };
+
+        return timeTable;
     };
 
-    //Inserts individual number mutiplication tables into timeTable - Runs for each input
-    for(const num in numberInputs){
-        let multiNum = numberInputs[num];
-        timeTable[num] = multiplyNumbers(multiNum, numOfPostions); 
-    };
-
-    return timeTable;
+    const timeTable = createTimesTable(numberInputs, 1, 10);
 };
-
-const timeTable = createTimesTable(numberInputs, 1, 10);
-console.log()
 
 //Click Events
 table.inputs.btnAdd.addEventListener("click", function(){table.createColumn()});
