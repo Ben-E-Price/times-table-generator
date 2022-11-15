@@ -47,6 +47,15 @@ const table = {
         createInputElements();
     },
 
+    //Creates x number of colums
+    createMultiCols: function(){
+        const numOfCols = Number(this.inputs.inNumOfCols.value);
+
+        for(let i = 0; i < numOfCols; i ++){
+           this.createColumn();
+        };
+    },
+
     //Removes columns - Prevents intial 2 being removed
     removeColumn: function(){
         const numOfCols = this.columnRoot.length;
@@ -57,12 +66,9 @@ const table = {
         };
     },
 
-    //Creates x number of colums
-    createMultiCols: function(){
-        const numOfCols = Number(this.inputs.inNumOfCols.value);
-
-        for(let i = 0; i < numOfCols; i ++){
-           this.createColumn();
+    resetTable: function(){
+        for(const col in this.columnRoot){
+            this.removeColumn();
         };
     },
 
@@ -114,6 +120,7 @@ console.log()
 table.inputs.btnAdd.addEventListener("click", function(){table.createColumn()});
 table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()});
 table.inputs.btnCreateCols.addEventListener("click", function(){table.createMultiCols()});
+table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
 
 //Input Blocking   
 for(const input of inputElements){
