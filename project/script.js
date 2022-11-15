@@ -100,11 +100,11 @@ function createTimesTable(numberInputs, startPos, endPos){
     //Creates multiples of multiplyNum value 
     function multiplyNumbers(multiplyNum, numOfPostions){
         let singleTimeTable = [];
-        let positionNum = multiplyNum;
+        let positionValue = multiplyNum;
 
         for(let i = 0; i < numOfPostions; i++){
-            singleTimeTable[i] = positionNum;
-            positionNum = positionNum + multiplyNum
+            singleTimeTable[i] = positionValue;
+            positionValue = positionValue + multiplyNum
         };
 
         return singleTimeTable;
