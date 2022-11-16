@@ -108,22 +108,21 @@ function calcRows(){
     };
 
     //Calcualtes the number of mutiplication positions
-    function calcNumOfPosi(){
+    function calcNumOfPost(){
         return endPos - startPos;
     }
 
     //Creates an array of mutiplication tables
-    function createTimesTable(numberInputs, numberOfPosi){
-        startPos = startPos -1;
-        const numOfPostions = endPos - startPos;
+    function createTimesTable(numberInputs, numOfPost){
+        const startPos = this.startPos -1;
         let timeTable = [];
         
         //Creates multiples of multiplyNum value 
-        function multiplyNumbers(multiplyNum, numOfPostions){
+        function multiplyNumbers(multiplyNum, numOfPost){
             let singleTimeTable = [];
             let positionValue = multiplyNum;
 
-            for(let i = 0; i < numOfPostions; i++){
+            for(let i = 0; i < numOfPost; i++){
                 singleTimeTable[i] = positionValue;
                 positionValue = positionValue + multiplyNum
             };
@@ -134,7 +133,7 @@ function calcRows(){
         //Inserts individual number mutiplication tables into timeTable - Runs for each input
         for(const num in numberInputs){
             let multiNum = numberInputs[num];
-            timeTable[num] = multiplyNumbers(multiNum, numOfPostions); 
+            timeTable[num] = multiplyNumbers(multiNum, numOfPost); 
         };
 
         return timeTable;
