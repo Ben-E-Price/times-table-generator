@@ -109,7 +109,8 @@ function calcRows(){
 
     //Calcualtes the number of mutiplication positions
     function calcNumOfPost(){
-        return endPos - startPos;
+        // return endPos - startPos;
+        return this.numOfPost = endPos - startPos;
     }
 
     //Creates an array of mutiplication tables
@@ -149,7 +150,11 @@ function calcRows(){
             newRow.textContent = postTimeTable[loopCount];
             return newRow
         };
-    }
+
+        for(let i = 0; i < numOfPost; i++){
+
+        };
+    };
 
     const timeTable = createTimesTable(numberInputs, 1, 10);
 };
