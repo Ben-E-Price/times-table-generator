@@ -100,10 +100,10 @@ function calcRows(){
         const inputFields = document.querySelectorAll(".in-multi-num");
         const numberInputs = [];
 
-        for(const input in inputFields){
-            numberInputs[input] = inputFields[input].value;
-        };
-
+        inputFields.forEach(function(event, index){
+            numberInputs[index] = Number(inputFields[index].value)
+        });
+ 
         return numberInputs
     };
 
@@ -163,7 +163,8 @@ function calcRows(){
         };
     };
 
-    const timeTable = createTimesTable(numberInputs, 1, 10);
+    generateRows(calcNumOfPost(), createTimesTable(getMultiNumInputs(), this.numOfPost));    
+
 };
 
 //Click Events
