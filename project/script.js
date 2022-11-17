@@ -139,6 +139,18 @@ function calcRows(){
         return timeTable;
     };
 
+    //Generates the required number of rows, appending to columns
+    function generateRows(numOfPost, timeTable) {
+
+        //Creates a new row td element - Adds class + sets text content
+        function createRow(postTimeTable, loopCount){
+            const newRow = document.createElement("td");
+            newRow.classList.add("row");
+            newRow.textContent = postTimeTable[loopCount];
+            return newRow
+        };
+    }
+
     const timeTable = createTimesTable(numberInputs, 1, 10);
 };
 
