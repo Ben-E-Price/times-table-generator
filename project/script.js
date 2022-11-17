@@ -172,6 +172,8 @@ table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()
 table.inputs.btnCreateCols.addEventListener("click", function(){table.createMultiCols()});
 table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
 
+calcInputs.btnCalc.addEventListener("click", calcRows);
+
 //Input Blocking   
 for(const input of inputElements){
     input.addEventListener("keydown", inputBlock);
