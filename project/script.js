@@ -111,7 +111,7 @@ function calcRows(){
     function calcNumOfPost(){
         // return endPos - startPos;
         return this.numOfPost = endPos - startPos;
-    }
+    };
 
     //Creates an array of mutiplication tables
     function createTimesTable(numberInputs, numOfPost){
@@ -151,8 +151,15 @@ function calcRows(){
             return newRow
         };
 
-        for(let i = 0; i < numOfPost; i++){
+        //Executes on each columns
+        for(let i = 0; i < table.columnRoot.length; i++){
+            const currentColumn = table.columnRoot[i];
+            const currentTable = timeTable[i];
 
+            //Executes for each required row
+            for(let i = 0; i < numOfPost; i++){
+                currentColumn.appendChild(createRow(currentTable, i));
+            };
         };
     };
 
