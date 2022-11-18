@@ -1,3 +1,5 @@
+`use strict`;
+
 const inputElements = document.getElementsByClassName("num-input"); //Input feilds used to enter numbers
 
 //User input elements
@@ -100,6 +102,8 @@ function inputBlock(eventIn) {
 
 //Calculates row content - Adds rows to UI
 function calcRows(){
+    let startPos = 0;
+    let endPos = 0;
 
     //Retrieves user inputs - Returns as an array
     function getMultiNumInputs(){
@@ -115,15 +119,15 @@ function calcRows(){
 
     //Calcualtes the number of mutiplication positions
     function calcNumOfPost(inputMap){
-        const startPos = inputMap.get("startInput");
-        const endPos = inputMap.get("endInput");
-        const posNum = endPos - startPos;
-        return posNum;
+        startPos = inputMap.get("startInput");
+        endPos = inputMap.get("endInput"); 
+
+        return endPos - startPos
     };
 
     //Creates an array of mutiplication tables
     function createTimesTable(numberInputs, numOfPost){
-        const startPos = this.startPos -1;
+        // const startPos = this.startPos -1;
         let timeTable = [];
         
         //Creates multiples of multiplyNum value 
@@ -171,13 +175,9 @@ function calcRows(){
         };
     };
 
-    // const numOfPostion = 10;
-    // const inArray = getMultiNumInputs();
-    // const timesTable = createTimesTable(inArray, numOfPostion);
-    // generateRows(numOfPostion, timesTable);
+    const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
 
-    console.log(calcNumOfPost(calcInputs.getPostInputs()));
-    // generateRows(calcNumOfPost(), createTimesTable(getMultiNumInputs(), this.numOfPost));    
+    generateRows(numOfPost, createTimesTable(getMultiNumInputs(), numOfPost));    
 
 };
 
