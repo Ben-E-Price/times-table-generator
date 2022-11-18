@@ -100,8 +100,6 @@ function inputBlock(eventIn) {
 
 //Calculates row content - Adds rows to UI
 function calcRows(){
-    const startPostion = Number(calcInputs.startInput.value);
-    const endPostion = Number(calcInputs.endInput.value);
 
     //Retrieves user inputs - Returns as an array
     function getMultiNumInputs(){
@@ -116,9 +114,10 @@ function calcRows(){
     };
 
     //Calcualtes the number of mutiplication positions
-    function calcNumOfPost(){
-        const posNum = this.endPos - this.startPos;
-        this.numOfPost = posNum;
+    function calcNumOfPost(inputMap){
+        const startPos = inputMap.get("startInput");
+        const endPos = inputMap.get("endInput");
+        const posNum = endPos - startPos;
         return posNum;
     };
 
@@ -177,7 +176,7 @@ function calcRows(){
     // const timesTable = createTimesTable(inArray, numOfPostion);
     // generateRows(numOfPostion, timesTable);
 
-
+    console.log(calcNumOfPost(calcInputs.getPostInputs()));
     // generateRows(calcNumOfPost(), createTimesTable(getMultiNumInputs(), this.numOfPost));    
 
 };
