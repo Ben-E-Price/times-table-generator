@@ -6,6 +6,14 @@ const calcInputs = {
     numInput: document.querySelector("#in-multi-num"),
     startInput: document.querySelector("#in-pos-start"),
     endInput: document.querySelector("#in-pos-end"),
+
+    getPostInputs: function(){
+       const inputMap = new Map()
+       inputMap.set("startInput", Number(this.startInput.value))
+                .set("endInput", Number(this.endInput.value));
+
+        return inputMap
+    },
 };
 
 //Table elements + functionality
@@ -92,8 +100,8 @@ function inputBlock(eventIn) {
 
 //Calculates row content - Adds rows to UI
 function calcRows(){
-    const startPos = calcInputs.startInput.value;
-    const endPos = calcInputs.endInput.value;
+    const startPostion = Number(calcInputs.startInput.value);
+    const endPostion = Number(calcInputs.endInput.value);
 
     //Retrieves user inputs - Returns as an array
     function getMultiNumInputs(){
@@ -109,8 +117,9 @@ function calcRows(){
 
     //Calcualtes the number of mutiplication positions
     function calcNumOfPost(){
-        // return endPos - startPos;
-        return this.numOfPost = endPos - startPos;
+        const posNum = this.endPos - this.startPos;
+        this.numOfPost = posNum;
+        return posNum;
     };
 
     //Creates an array of mutiplication tables
@@ -163,7 +172,13 @@ function calcRows(){
         };
     };
 
-    generateRows(calcNumOfPost(), createTimesTable(getMultiNumInputs(), this.numOfPost));    
+    // const numOfPostion = 10;
+    // const inArray = getMultiNumInputs();
+    // const timesTable = createTimesTable(inArray, numOfPostion);
+    // generateRows(numOfPostion, timesTable);
+
+
+    // generateRows(calcNumOfPost(), createTimesTable(getMultiNumInputs(), this.numOfPost));    
 
 };
 
