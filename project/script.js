@@ -121,8 +121,8 @@ function calcRows(){
     function calcNumOfPost(inputMap){
         startPos = inputMap.get("startInput");
         endPos = inputMap.get("endInput"); 
-
-        return endPos - startPos
+        
+        return startPos <= 1? endPos: endPos - startPos;
     };
 
     //Creates an array of mutiplication tables
@@ -168,6 +168,8 @@ function calcRows(){
             const currentColumn = table.columnRoot[i];
             const currentTable = timeTable[i];
 
+            //Accont for fisrt column
+
             //Executes for each required row
             for(let i = 0; i < numOfPost; i++){
                 currentColumn.appendChild(createRow(currentTable, i));
@@ -176,9 +178,7 @@ function calcRows(){
     };
 
     const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
-
     generateRows(numOfPost, createTimesTable(getMultiNumInputs(), numOfPost));    
-
 };
 
 //Click Events
