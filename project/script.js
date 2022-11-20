@@ -9,12 +9,9 @@ const calcInputs = {
     startInput: document.querySelector("#in-pos-start"),
     endInput: document.querySelector("#in-pos-end"),
 
-    getPostInputs: function(){
-       const inputMap = new Map()
-       inputMap.set("startInput", Number(this.startInput.value))
-                .set("endInput", Number(this.endInput.value));
-
-        return inputMap
+    getPostInputs: function(){ 
+     return new Map().set("startInput", Number(this.startInput.value))
+     .set("endInput", Number(this.endInput.value));
     },
 };
 
