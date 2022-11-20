@@ -166,13 +166,16 @@ function calcRows(){
         //Executes on each columns
         for(let i = 0; i < table.columnRoot.length; i++){
             const currentColumn = table.columnRoot[i];
-            const currentTable = timeTable[i];
+            const currentTable = timeTable[i - 1];
 
             //Accont for fisrt column
-
-            //Executes for each required row
-            for(let i = 0; i < numOfPost; i++){
-                currentColumn.appendChild(createRow(currentTable, i));
+            if(currentColumn.id === "pos-col"){
+                currentColumn.appendChild(createRow(i, i));
+            } else {
+                // Executes for each required row
+                for(let i = 0; i < numOfPost; i++){
+                    currentColumn.appendChild(createRow(currentTable, i));
+                };
             };
         };
     };
