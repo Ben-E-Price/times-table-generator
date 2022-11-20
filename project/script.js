@@ -77,8 +77,19 @@ const table = {
         };
     },
 
+    //Remove all rows
+    removeRows: function(){
+        const rowElements = document.getElementsByTagName("td");
+        
+        //Removes all rows - Starts at last row element
+        for(let i = rowElements.length - 1; i >= 0; i--){
+            rowElements[i].remove();
+        };
+    },
+
     //Removes x number of columns
     resetTable: function(){
+        this.removeRows();
         for(const col in this.columnRoot){
             this.removeColumn();
         };
@@ -165,12 +176,11 @@ function calcRows(){
             const currentColumn = table.columnRoot[i];
             const currentTable = timeTable[i - 1];
 
-            //Accont for fisrt column
+            //Account for fisrt column
             if(currentColumn.id === "pos-col"){
                 for(let i = 0; i < numOfPost; i++){
                     currentColumn.appendChild(createRow(i + 1));
                 };
-
             } else {
                 // Executes for each required row
                 for(let i = 0; i < numOfPost; i++){
