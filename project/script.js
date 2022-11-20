@@ -153,10 +153,10 @@ function calcRows(){
     function generateRows(numOfPost, timeTable) {
 
         //Creates a new row td element - Adds class + sets text content
-        function createRow(postTimeTable, loopCount){
+        function createRow(currentValue){
             const newRow = document.createElement("td");
             newRow.classList.add("row");
-            newRow.textContent = postTimeTable[loopCount];
+            newRow.textContent = currentValue;
             return newRow
         };
 
@@ -167,11 +167,14 @@ function calcRows(){
 
             //Accont for fisrt column
             if(currentColumn.id === "pos-col"){
-                currentColumn.appendChild(createRow(i, i));
+                for(let i = 0; i < numOfPost; i++){
+                    currentColumn.appendChild(createRow(i + 1));
+                };
+
             } else {
                 // Executes for each required row
                 for(let i = 0; i < numOfPost; i++){
-                    currentColumn.appendChild(createRow(currentTable, i));
+                    currentColumn.appendChild(createRow(currentTable[i]));
                 };
             };
         };
