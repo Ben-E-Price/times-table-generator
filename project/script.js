@@ -130,7 +130,7 @@ function calcRows(){
         startPos = inputMap.get("startInput");
         endPos = inputMap.get("endInput"); 
         
-        return startPos <= 1? endPos: endPos - startPos;
+        return startPos <= 1? endPos: endPos - startPos +1;
     };
 
     //Creates an array of mutiplication tables
@@ -142,7 +142,7 @@ function calcRows(){
             let singleTimeTable = [];
             let positionValue = multiplyNum * startPos;
 
-            for(let i = 0; i <= numOfPost; i++){
+            for(let i = 0; i < numOfPost; i++){
                 singleTimeTable[i] = positionValue;
                 positionValue = positionValue + multiplyNum
             };
@@ -177,12 +177,12 @@ function calcRows(){
 
             //Account for fisrt column
             if(currentColumn.id === "pos-col"){
-                for(let i = 0; i <= numOfPost; i++){
+                for(let i = 0; i < numOfPost; i++){
                     currentColumn.appendChild(createRow(startPos + i));
                 };
             } else {
                 // Executes for each required row
-                for(let i = 0; i <= numOfPost; i++){
+                for(let i = 0; i < numOfPost; i++){
                     currentColumn.appendChild(createRow(currentTable[i]));
                 };
             };
