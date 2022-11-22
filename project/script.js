@@ -140,7 +140,7 @@ function calcRows(){
         //Creates multiples of multiplyNum value 
         function multiplyNumbers(multiplyNum, numOfPost){
             let singleTimeTable = [];
-            let positionValue = multiplyNum * numOfPost;
+            let positionValue = multiplyNum * startPos;
 
             for(let i = 0; i < numOfPost; i++){
                 singleTimeTable[i] = positionValue;
@@ -178,7 +178,7 @@ function calcRows(){
             //Account for fisrt column
             if(currentColumn.id === "pos-col"){
                 for(let i = 0; i < numOfPost; i++){
-                    currentColumn.appendChild(createRow(numOfPost + i));
+                    currentColumn.appendChild(createRow(i));
                 };
             } else {
                 // Executes for each required row
