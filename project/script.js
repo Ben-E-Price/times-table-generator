@@ -178,7 +178,7 @@ function calcRows(){
             //Account for fisrt column
             if(currentColumn.id === "pos-col"){
                 for(let i = 0; i < numOfPost; i++){
-                    currentColumn.appendChild(createRow(i + 1));
+                    currentColumn.appendChild(createRow(numOfPost + i));
                 };
             } else {
                 // Executes for each required row
