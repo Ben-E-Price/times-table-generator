@@ -40,6 +40,7 @@ const table = {
         //Creates table column elements
         const createTalbeElement = () => {
             const cloneColumn = this.columnRoot[1].cloneNode(true);
+            this.setHeadContent(cloneColumn, length);
             this.tableBody.appendChild(cloneColumn);
         };
 
@@ -56,6 +57,10 @@ const table = {
             createInputElements();
         };
 
+    },
+    
+    setHeadContent: function(column, contNum){
+        column.firstElementChild.textContent = `Column ${contNum}`
     },
 
     //Creates x number of colums
