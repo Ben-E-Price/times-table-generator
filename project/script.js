@@ -32,15 +32,34 @@ const table = {
     tableBody: document.querySelector("#table-body"),
     columnRoot: document.getElementsByClassName("column-root"),
 
+    colHeader: {
+        //Creates keypair containing the current columns header
+        getColHeader: function(col){
+            this.currentHead = col.firstElementChild
+        },
+
+        //Set header on inital column creation
+        setInitalCreation: function(currentCol, num){
+           this.getColHeader(currentCol);
+           this.currentHead.textContent = `Column ${num}`;
+        },
+
+        //Set headers on table calcualtion/row creation
+        setMultiValue: function(currentCol, num){
+            this.getColHeader(currentCol);
+            this.currentHead.textContent = `${num}`;
+        },
+    },
+
     //Creates column
     createColumn: function(){
         const length = this.columnRoot.length
         const colLimit = 10;
 
         //Creates table column elements
-        const createTalbeElement = () => {
+        const createTalbeElement = (event) => {
             const cloneColumn = this.columnRoot[1].cloneNode(true);
-            this.setHeadContent(cloneColumn, length);
+            this.colHeader.setInitalCreation(cloneColumn, length);
             this.tableBody.appendChild(cloneColumn);
         };
 
@@ -57,10 +76,6 @@ const table = {
             createInputElements();
         };
 
-    },
-    
-    setHeadContent: function(column, contNum){
-        column.firstElementChild.textContent = `Column ${contNum}`
     },
 
     //Creates x number of colums
@@ -179,13 +194,16 @@ function calcRows(){
         for(let i = 0; i < table.columnRoot.length; i++){
             const currentColumn = table.columnRoot[i];
             const currentTable = timeTable[i - 1];
-
+            
             //Account for fisrt column
             if(currentColumn.id === "pos-col"){
                 for(let i = 0; i < numOfPost; i++){
                     currentColumn.appendChild(createRow(startPos + i));
                 };
             } else {
+                //Set header to mutiplication value
+                table.colHeader.setMultiValue(currentColumn, numInputs[i - 1]);
+
                 // Executes for each required row
                 for(let i = 0; i < numOfPost; i++){
                     currentColumn.appendChild(createRow(currentTable[i]));
@@ -196,7 +214,8 @@ function calcRows(){
 
     
     const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
-    generateRows(numOfPost, createTimesTable(getMultiNumInputs(), numOfPost));    
+    const numInputs = getMultiNumInputs();
+    generateRows(numOfPost, createTimesTable(numInputs, numOfPost));    
 };
 
 //Click Events
