@@ -1,5 +1,6 @@
 `use strict`;
 const inputBlocking = {
+    //Stores elements requiring blocking
     inputs: {
         textFields: document.getElementsByClassName("num-input"),//Input feilds used to enter numbers
         btn: document.getElementsByClassName("btn-clk-blk"),
@@ -14,7 +15,14 @@ const inputBlocking = {
         } else {
             eventIn.preventDefault();
         };
-    },    
+    },
+    
+
+    addEvent: function(element, eventType){
+        element.addEventListener(eventType, (event) => {
+            this.block(event)
+        });
+    },
 };
 
 //User input elements
@@ -81,7 +89,7 @@ const table = {
         //Creates multiplication input elements
         const createInputElements = () => {
             const cloneInMultiNum = this.inMultiNumCont[0].cloneNode(true);
-            cloneInMultiNum.addEventListener("keydown", inputBlock);
+            cloneInMultiNum.addEventListener("keydown", function(event){inputBlocking.block(event)});
             this.inMultiNumRoot.appendChild(cloneInMultiNum);
         };
 
@@ -131,16 +139,6 @@ const table = {
     },
 
 };
-
-// function inputBlock(eventIn) {
-//     const validChars = RegExp(["[0-9]"]);
-
-//     if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
-//         return        
-//     } else {
-//         eventIn.preventDefault();
-//     };
-// };
 
 //Calculates row content - Adds rows to UI
 function calcRows(){
@@ -240,7 +238,20 @@ table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable(
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
 
-//Input Blocking -  
+//Input Blocking
+// const blockArray = Object.values(inputBlocking.inputs);
+
+// for(const list of blockArray){
+//     for(const element of list){
+//         element.addEventListener("keydown", function(event){inputBlocking.block(event)})
+//     }
+// }
+
+
+// for(const input of inputBlocking.inputs.textFields){
+//     input.addEventListener("keydown", function(event){inputBlocking.block(event)});
+// };
+
 for(const input of inputBlocking.inputs.textFields){
-    input.addEventListener("keydown", function(event){inputBlocking.block(event)});
+    inputBlocking.addEvent(input, "keydown")
 };
