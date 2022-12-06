@@ -3,7 +3,18 @@ const inputBlocking = {
     inputs: {
         textFields: document.getElementsByClassName("num-input"),//Input feilds used to enter numbers
         btn: document.getElementsByClassName("btn-clk-blk"),
-    }
+    },
+
+    //Prevents any charecter that is not 0 - 9 being enterd within input fields 
+    block: function(eventIn) {
+        const validChars = RegExp(["[0-9]"]);
+
+        if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
+            return        
+        } else {
+            eventIn.preventDefault();
+        };
+    },    
 };
 
 //User input elements
@@ -121,16 +132,15 @@ const table = {
 
 };
 
-//Prevents any charecter that is not 0 - 9 being enterd within input fields 
-function inputBlock(eventIn) {
-    const validChars = RegExp(["[0-9]"]);
+// function inputBlock(eventIn) {
+//     const validChars = RegExp(["[0-9]"]);
 
-    if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
-        return        
-    } else {
-        eventIn.preventDefault();
-    };
-};
+//     if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
+//         return        
+//     } else {
+//         eventIn.preventDefault();
+//     };
+// };
 
 //Calculates row content - Adds rows to UI
 function calcRows(){
@@ -232,5 +242,5 @@ calcInputs.btnCalc.addEventListener("click", calcRows);
 
 //Input Blocking -  
 for(const input of inputBlocking.inputs.textFields){
-    input.addEventListener("keydown", inputBlock);
+    input.addEventListener("keydown", function(event){inputBlocking.block(event)});
 };
