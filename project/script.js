@@ -13,14 +13,21 @@ const inputBlocking = {
         },  
     ],
 
-    //Prevents any charecter that is not 0 - 9 being enterd within input fields 
+    //Prevents elements functionality executing
     block: function(eventIn) {
-        const validChars = RegExp(["[0-9]"]);
+        
+        //Checks + blocks ilegal chars on keydown events
+        function charBlock(eventIn){
+            const validChars = RegExp(["[0-9]"]);
+            if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
+                return        
+            } else {
+                eventIn.preventDefault();
+            };
+        };
 
-        if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
-            return        
-        } else {
-            eventIn.preventDefault();
+        if(eventIn.type === "keydown"){
+           charBlock(eventIn);
         };
     },
     
@@ -245,7 +252,7 @@ table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable(
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
 
-//Input Blocking
+//Input Blocking 
 for(const object of inputBlocking.inputs){
     const currentType = object.eventType;
 
@@ -253,8 +260,3 @@ for(const object of inputBlocking.inputs){
         inputBlocking.addEvent(element, currentType);
     };
 };
-
-// for(const input of inputBlocking.inputs.textFields){
-//     input.addEventListener("keydown", function(event){inputBlocking.block(event)});
-// };
-
