@@ -1,4 +1,5 @@
-const numberInputs = [5, 10, 15];
+`use strict`;
+
 const inputElements = document.getElementsByClassName("num-input"); //Input feilds used to enter numbers
 
 //User input elements
@@ -7,6 +8,11 @@ const calcInputs = {
     numInput: document.querySelector("#in-multi-num"),
     startInput: document.querySelector("#in-pos-start"),
     endInput: document.querySelector("#in-pos-end"),
+
+    getPostInputs: function(){ 
+     return new Map().set("startInput", Number(this.startInput.value))
+     .set("endInput", Number(this.endInput.value));
+    },
 };
 
 //Table elements + functionality
@@ -21,10 +27,29 @@ const table = {
         inNumOfCols: document.querySelector("#in-num-of-cols"),
     },
     
-    inMultiNum: document.getElementsByClassName("multi-num-cont"),
+    inMultiNumCont: document.getElementsByClassName("multi-num-cont"),
     inMultiNumRoot: document.querySelector("#multi-num-in-wrapper"),
     tableBody: document.querySelector("#table-body"),
     columnRoot: document.getElementsByClassName("column-root"),
+
+    colHeader: {
+        //Creates keypair containing the current columns header
+        getColHeader: function(col){
+            this.currentHead = col.firstElementChild
+        },
+
+        //Set header on inital column creation
+        setInitalCreation: function(currentCol, num){
+           this.getColHeader(currentCol);
+           this.currentHead.textContent = `Column ${num}`;
+        },
+
+        //Set headers on table calcualtion/row creation
+        setMultiValue: function(currentCol, num){
+            this.getColHeader(currentCol);
+            this.currentHead.textContent = `${num}`;
+        },
+    },
 
     //Creates column
     createColumn: function(){
@@ -32,14 +57,15 @@ const table = {
         const colLimit = 10;
 
         //Creates table column elements
-        const createTalbeElement = () => {
+        const createTalbeElement = (event) => {
             const cloneColumn = this.columnRoot[1].cloneNode(true);
+            this.colHeader.setInitalCreation(cloneColumn, length);
             this.tableBody.appendChild(cloneColumn);
         };
 
         //Creates multiplication input elements
         const createInputElements = () => {
-            const cloneInMultiNum = this.inMultiNum[0].cloneNode(true);
+            const cloneInMultiNum = this.inMultiNumCont[0].cloneNode(true);
             cloneInMultiNum.addEventListener("keydown", inputBlock);
             this.inMultiNumRoot.appendChild(cloneInMultiNum);
         };
@@ -67,12 +93,23 @@ const table = {
         
         if(numOfCols > 2){
             this.columnRoot[numOfCols -1].remove()
-            this.inMultiNum[this.inMultiNum.length-1].remove();
+            this.inMultiNumCont[this.inMultiNumCont.length-1].remove();
+        };
+    },
+
+    //Remove all rows
+    removeRows: function(){
+        const rowElements = document.getElementsByTagName("td");
+        
+        //Removes all rows - Starts at last row element
+        for(let i = rowElements.length - 1; i >= 0; i--){
+            rowElements[i].remove();
         };
     },
 
     //Removes x number of columns
     resetTable: function(){
+        this.removeRows();
         for(const col in this.columnRoot){
             this.removeColumn();
         };
@@ -91,42 +128,99 @@ function inputBlock(eventIn) {
     };
 };
 
-//Creates an array of mutiplication tables
-function createTimesTable(numberInputs, startPos, endPos){
-    startPos = startPos -1;
-    const numOfPostions = endPos - startPos;
-    let timeTable = [];
-    
-    //Creates multiples of multiplyNum value 
-    function multiplyNumbers(multiplyNum, numOfPostions){
-        let singleTimeTable = [];
-        let positionValue = multiplyNum;
+//Calculates row content - Adds rows to UI
+function calcRows(){
+    let startPos = 0;
+    let endPos = 0;
 
-        for(let i = 0; i < numOfPostions; i++){
-            singleTimeTable[i] = positionValue;
-            positionValue = positionValue + multiplyNum
+    //Retrieves user inputs - Returns as an array
+    function getMultiNumInputs(){
+        const inputFields = document.querySelectorAll(".in-multi-num");
+        const numberInputs = [];
+
+        inputFields.forEach(function(event, index){
+            numberInputs[index] = Number(inputFields[index].value)
+        });
+
+        return numberInputs
+    };
+
+    //Calcualtes the number of mutiplication positions
+    function calcNumOfPost(inputMap){
+        startPos = inputMap.get("startInput");
+        endPos = inputMap.get("endInput"); 
+        
+        return startPos <= 1? endPos: endPos - startPos +1;
+    };
+
+    //Creates an array of mutiplication tables
+    function createTimesTable(numberInputs, numOfPost){
+        let timeTable = [];
+        
+        //Creates multiples of multiplyNum value 
+        function multiplyNumbers(multiplyNum, numOfPost){
+            let singleTimeTable = [];
+            let positionValue = multiplyNum * startPos;
+
+            for(let i = 0; i < numOfPost; i++){
+                singleTimeTable[i] = positionValue;
+                positionValue = positionValue + multiplyNum
+            };
+
+            return singleTimeTable;
         };
 
-        return singleTimeTable;
+        //Inserts individual number mutiplication tables into timeTable - Runs for each input
+        for(const num in numberInputs){  
+            let multiNum = numberInputs[num];
+            timeTable[num] = multiplyNumbers(multiNum, numOfPost); 
+        };
+
+        return timeTable;
     };
 
-    //Inserts individual number mutiplication tables into timeTable - Runs for each input
-    for(const num in numberInputs){
-        let multiNum = numberInputs[num];
-        timeTable[num] = multiplyNumbers(multiNum, numOfPostions); 
+    //Generates the required number of rows, appending to columns
+    function generateRows(numOfPost, timeTable) {
+
+        //Creates a new row td element - Adds class + sets text content
+        function createRow(currentValue){
+            const newRow = document.createElement("td");
+            newRow.classList.add("row");
+            newRow.textContent = currentValue;
+            return newRow
+        };
+
+        //Executes on each columns
+        for(let i = 0; i < table.columnRoot.length; i++){
+            const currentColumn = table.columnRoot[i];
+            const currentTable = timeTable[i - 1];
+
+            //Account for fisrt column
+            if(currentColumn.id === "pos-col"){
+                for(let i = 0; i < numOfPost; i++){
+                    currentColumn.appendChild(createRow(startPos + i));
+                };
+            } else {
+                // Executes for each required row
+                for(let i = 0; i < numOfPost; i++){
+                    currentColumn.appendChild(createRow(currentTable[i]));
+                };
+            };
+        };
     };
 
-    return timeTable;
+    
+    const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
+    generateRows(numOfPost, createTimesTable(getMultiNumInputs(), numOfPost));    
 };
-
-const timeTable = createTimesTable(numberInputs, 1, 10);
-console.log()
 
 //Click Events
 table.inputs.btnAdd.addEventListener("click", function(){table.createColumn()});
 table.inputs.btnRemove.addEventListener("click", function(){table.removeColumn()});
 table.inputs.btnCreateCols.addEventListener("click", function(){table.createMultiCols()});
 table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
+
+calcInputs.btnCalc.addEventListener("click", calcRows);
 
 //Input Blocking   
 for(const input of inputElements){
