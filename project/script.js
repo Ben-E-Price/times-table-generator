@@ -1,7 +1,8 @@
 `use strict`;
 const inputBlocking = {
     inputs: {
-        textFields: document.getElementsByClassName("num-input")//Input feilds used to enter numbers
+        textFields: document.getElementsByClassName("num-input"),//Input feilds used to enter numbers
+        btn: document.getElementsByClassName("btn-clk-blk"),
     }
 };
 
