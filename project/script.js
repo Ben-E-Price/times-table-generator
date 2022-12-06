@@ -1,6 +1,9 @@
 `use strict`;
-
-const inputElements = document.getElementsByClassName("num-input"); //Input feilds used to enter numbers
+const inputBlocking = {
+    inputs: {
+        textFields: document.getElementsByClassName("num-input")//Input feilds used to enter numbers
+    }
+};
 
 //User input elements
 const calcInputs = {
@@ -194,13 +197,16 @@ function calcRows(){
         for(let i = 0; i < table.columnRoot.length; i++){
             const currentColumn = table.columnRoot[i];
             const currentTable = timeTable[i - 1];
-
+            
             //Account for fisrt column
             if(currentColumn.id === "pos-col"){
                 for(let i = 0; i < numOfPost; i++){
                     currentColumn.appendChild(createRow(startPos + i));
                 };
             } else {
+                //Set header to mutiplication value
+                table.colHeader.setMultiValue(currentColumn, numInputs[i - 1]);
+
                 // Executes for each required row
                 for(let i = 0; i < numOfPost; i++){
                     currentColumn.appendChild(createRow(currentTable[i]));
@@ -211,7 +217,8 @@ function calcRows(){
 
     
     const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
-    generateRows(numOfPost, createTimesTable(getMultiNumInputs(), numOfPost));    
+    const numInputs = getMultiNumInputs();
+    generateRows(numOfPost, createTimesTable(numInputs, numOfPost));    
 };
 
 //Click Events
@@ -222,7 +229,7 @@ table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable(
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
 
-//Input Blocking   
-for(const input of inputElements){
+//Input Blocking -  
+for(const input of inputBlocking.inputs.textFields){
     input.addEventListener("keydown", inputBlock);
-}
+};
