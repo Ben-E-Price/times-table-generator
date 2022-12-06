@@ -1,10 +1,17 @@
 `use strict`;
 const inputBlocking = {
     //Stores elements requiring blocking
-    inputs: {
-        textFields: document.getElementsByClassName("num-input"),//Input feilds used to enter numbers
-        btn: document.getElementsByClassName("btn-clk-blk"),
-    },
+    inputs: [
+        {
+            element: document.getElementsByClassName("num-input"),
+            eventType: "keydown"
+        },
+
+        {
+            element: document.getElementsByClassName("btn-clk-blk"),
+            eventType: "click"
+        },  
+    ],
 
     //Prevents any charecter that is not 0 - 9 being enterd within input fields 
     block: function(eventIn) {
@@ -239,19 +246,15 @@ table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable(
 calcInputs.btnCalc.addEventListener("click", calcRows);
 
 //Input Blocking
-// const blockArray = Object.values(inputBlocking.inputs);
+for(const object of inputBlocking.inputs){
+    const currentType = object.eventType;
 
-// for(const list of blockArray){
-//     for(const element of list){
-//         element.addEventListener("keydown", function(event){inputBlocking.block(event)})
-//     }
-// }
-
+    for(const element of object.element){
+        inputBlocking.addEvent(element, currentType);
+    };
+};
 
 // for(const input of inputBlocking.inputs.textFields){
 //     input.addEventListener("keydown", function(event){inputBlocking.block(event)});
 // };
 
-for(const input of inputBlocking.inputs.textFields){
-    inputBlocking.addEvent(input, "keydown")
-};
