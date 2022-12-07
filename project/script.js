@@ -44,7 +44,7 @@ const inputBlocking = {
 
     addEvent: function(element, eventType){
         element.addEventListener(eventType, (event) => {
-            this.block(event)
+            this.block(event);
         });
     },
 };
@@ -160,6 +160,7 @@ const table = {
         for(const col in this.columnRoot){
             this.removeColumn();
         };
+        inputBlocking.tableCreated = false;
     },
 
 };
@@ -255,7 +256,7 @@ function calcRows(){
     inputBlocking.tableCreated = true;
 };
 
-//Input Blocking - Must be declared before other events
+//Input Blocking - Must be declared before other events due to "event.stopImmediatePropagation"
 for(const object of inputBlocking.inputs){
     const currentType = object.eventType;
 
