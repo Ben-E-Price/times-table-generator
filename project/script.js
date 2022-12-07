@@ -256,6 +256,15 @@ function calcRows(){
     inputBlocking.tableCreated = true;
 };
 
+//Clear value content from all inputs
+function inputClear() {
+    const inputs = document.getElementsByClassName("num-input");
+
+    for(const input of inputs){
+        input.value = "";
+    };
+};
+
 //Input Blocking - Must be declared before other events due to "event.stopImmediatePropagation"
 for(const object of inputBlocking.inputs){
     const currentType = object.eventType;
@@ -272,3 +281,5 @@ table.inputs.btnCreateCols.addEventListener("click", function(){table.createMult
 table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
+
+inputClear();
