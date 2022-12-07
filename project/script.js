@@ -252,7 +252,9 @@ function calcRows(){
     
     const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
     const numInputs = getMultiNumInputs();
+
     generateRows(numOfPost, createTimesTable(numInputs, numOfPost));
+    inputClear();
     inputBlocking.tableCreated = true;
 };
 
@@ -281,5 +283,3 @@ table.inputs.btnCreateCols.addEventListener("click", function(){table.createMult
 table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
-
-inputClear();
