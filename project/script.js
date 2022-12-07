@@ -13,8 +13,11 @@ const inputBlocking = {
         },  
     ],
 
+    tableCreated: false,
+
     //Prevents elements functionality executing
     block: function(eventIn) {
+        const eventType = eventIn.type
         
         //Checks + blocks ilegal chars on keydown events
         function charBlock(eventIn){
@@ -25,10 +28,17 @@ const inputBlocking = {
                 eventIn.preventDefault();
             };
         };
+      
 
-        if(eventIn.type === "keydown"){
+        if(eventType === "keydown"){
            charBlock(eventIn);
         };
+        
+        //Blocks button inputs once a table is created
+        if(eventType === "click" && this.tableCreated) {
+            eventIn.stopImmediatePropagation()
+        };
+
     },
     
 
@@ -241,7 +251,17 @@ function calcRows(){
     
     const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
     const numInputs = getMultiNumInputs();
-    generateRows(numOfPost, createTimesTable(numInputs, numOfPost));    
+    generateRows(numOfPost, createTimesTable(numInputs, numOfPost));
+    inputBlocking.tableCreated = true;
+};
+
+//Input Blocking - Must be declared before other events
+for(const object of inputBlocking.inputs){
+    const currentType = object.eventType;
+
+    for(const element of object.element){
+        inputBlocking.addEvent(element, currentType);
+    };
 };
 
 //Click Events
@@ -251,12 +271,3 @@ table.inputs.btnCreateCols.addEventListener("click", function(){table.createMult
 table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
-
-//Input Blocking 
-for(const object of inputBlocking.inputs){
-    const currentType = object.eventType;
-
-    for(const element of object.element){
-        inputBlocking.addEvent(element, currentType);
-    };
-};
