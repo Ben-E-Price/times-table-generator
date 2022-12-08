@@ -161,6 +161,7 @@ const table = {
             this.removeColumn();
         };
         inputBlocking.tableCreated = false;
+        this.colHeader.setInitalCreation(this.columnRoot[1], 1);
     },
 
 };
