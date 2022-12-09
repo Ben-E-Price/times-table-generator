@@ -157,11 +157,13 @@ const table = {
     //Removes x number of columns
     resetTable: function(){
         this.removeRows();
+
         for(const col in this.columnRoot){
             this.removeColumn();
         };
-        inputBlocking.tableCreated = false;
-        this.colHeader.setInitalCreation(this.columnRoot[1], 1);
+
+        inputBlocking.tableCreated = false; //Re-enables button click events
+        this.colHeader.setInitalCreation(this.columnRoot[1], 1);// Resets column header value
     },
 
 };
@@ -187,6 +189,14 @@ function calcRows(){
     function calcNumOfPost(inputMap){
         startPos = inputMap.get("startInput");
         endPos = inputMap.get("endInput"); 
+
+        //Error Check inverts values - 
+        //If endPos < startPos, values are inverted ensures number of positions created is correct
+        if (endPos < startPos){
+            const tempStart = startPos;
+            startPos = endPos;
+            endPos = tempStart;
+        };
         
         return startPos <= 1? endPos: endPos - startPos +1;
     };
