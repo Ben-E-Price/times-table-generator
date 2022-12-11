@@ -135,12 +135,7 @@ const table = {
         function validColNumCheck(colNumInput, colLimit) {
             colLimit -= table.columnRoot.length -1; //Accounts for current number of columns
 
-            if(colNumInput > colLimit) {
-              //Call error function
-              return false  
-            } else {
-                return true
-            };
+            return colNumInput > colLimit ? false : true;
         };
 
         //Creates columns if "numOfCols" < colLimit
