@@ -18,7 +18,7 @@ const inputBlocking = {
     //Prevents elements functionality executing
     block: function(eventIn) {
         const eventType = eventIn.type
-        
+        console.log(eventIn)
         //Checks + blocks ilegal chars on keydown events
         function charBlock(eventIn){
             const validChars = RegExp(["[0-9]"]);
@@ -100,7 +100,7 @@ const table = {
 
     //Creates column
     createColumn: function(){
-        const length = this.columnRoot.length
+        const length = this.columnRoot.length;
         const colLimit = 10;
 
         //Creates table column elements
@@ -129,8 +129,22 @@ const table = {
     createMultiCols: function(){
         const numOfCols = Number(this.inputs.inNumOfCols.value);
 
-        for(let i = 0; i < numOfCols; i ++){
-           this.createColumn();
+        //Prevents creation of 
+        function validColNumCheck(currentColNumIn, colLimit) {
+            colLimit -= table.columnRoot.length -1; 
+
+            if(currentColNumIn > colLimit) {
+              //Call error functions
+              return false  
+            } else {
+                return true
+            };
+        };
+
+        if(validColNumCheck(numOfCols, 10)) {
+            for(let i = 0; i < numOfCols; i ++){
+               this.createColumn();
+            };
         };
     },
 
