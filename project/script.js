@@ -98,10 +98,12 @@ const table = {
         },
     },
 
+    colLimit: 10,
+
     //Creates column
     createColumn: function(){
         const length = this.columnRoot.length;
-        const colLimit = 10;
+        const colLimit = this.colLimit;
 
         //Creates table column elements
         const createTalbeElement = (event) => {
@@ -129,19 +131,20 @@ const table = {
     createMultiCols: function(){
         const numOfCols = Number(this.inputs.inNumOfCols.value);
 
-        //Prevents creation of 
-        function validColNumCheck(currentColNumIn, colLimit) {
-            colLimit -= table.columnRoot.length -1; 
+        //Blocks/Allows column creation dependent on "colNumInput" 
+        function validColNumCheck(colNumInput, colLimit) {
+            colLimit -= table.columnRoot.length -1; //Accounts for current number of columns
 
-            if(currentColNumIn > colLimit) {
-              //Call error functions
+            if(colNumInput > colLimit) {
+              //Call error function
               return false  
             } else {
                 return true
             };
         };
 
-        if(validColNumCheck(numOfCols, 10)) {
+        //Creates columns if "numOfCols" < colLimit
+        if(validColNumCheck(numOfCols, this.colLimit)) {
             for(let i = 0; i < numOfCols; i ++){
                this.createColumn();
             };
