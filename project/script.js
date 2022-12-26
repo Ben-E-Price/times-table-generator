@@ -180,6 +180,17 @@ const table = {
 
 };
 
+const error = {
+
+    addClass: function(element, className) {
+        element.classList.add(className);
+    },
+
+    removeClass: function(element, className){
+        element.classList.remove(className);
+    },
+};
+
 //Calculates row content - Adds rows to UI
 function calcRows(){
     let startPos = 0;
