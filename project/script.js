@@ -17,8 +17,8 @@ const inputBlocking = {
 
     //Prevents elements functionality executing
     block: function(eventIn) {
-        const eventType = eventIn.type
-        console.log(eventIn)
+        const eventType = eventIn.type;
+        console.log(eventIn.target)
         //Checks + blocks ilegal chars on keydown events
         function charBlock(eventIn){
             const validChars = RegExp(["[0-9]"]);
@@ -28,7 +28,6 @@ const inputBlocking = {
                 eventIn.preventDefault();
             };
         };
-      
 
         if(eventType === "keydown"){
            charBlock(eventIn);
@@ -180,15 +179,26 @@ const table = {
 
 };
 
-const error = {
+const errorCheck = {
+    errorClass: "in-error",
 
-    addClass: function(element, className) {
-        element.classList.add(className);
+    addClass: function(element) {
+        element.classList.add(this.errorClass);
     },
 
-    removeClass: function(element, className){
-        element.classList.remove(className);
+    removeClass: function(element){
+        element.classList.remove(this.errorClass);
     },
+
+    //Adds - removes class on timer
+    timedClass: function(element, removeTime) {
+        this.addClass(element);
+        const timer = setTimeout(this.removeClass(element), timer);
+    },
+
+    //Required feilds check
+
+    //Column creation number
 };
 
 //Calculates row content - Adds rows to UI
