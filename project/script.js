@@ -141,19 +141,19 @@ const table = {
     createMultiCols: function(){
         const numOfCols = Number(this.inputs.inNumOfCols.value);
 
-        //Blocks/Allows column creation dependent on "colNumInput" 
-        function validColNumCheck(colNumInput, colLimit) {
-            colLimit -= table.columnRoot.length -1; //Accounts for current number of columns
-
-            return colNumInput > colLimit ? false : true;
-        };
-
         //Creates columns if "numOfCols" < colLimit
-        if(validColNumCheck(numOfCols, this.colLimit)) {
+        if(this.validColNumCheck(numOfCols ,this.colLimit)) {
             for(let i = 0; i < numOfCols; i ++){
                this.createColumn();
             };
         };
+    },
+
+    //Blocks/Allows column creation dependent on "colLimit" 
+    validColNumCheck(colNumIn, colLimit) {
+        
+        colLimit -= table.columnRoot.length -1; //Accounts for current number of columns
+        return colNumIn > colLimit ? false : true;
     },
 
     //Removes columns - Prevents intial 2 being removed
@@ -209,14 +209,15 @@ const error = {
     },
 
     //Required feilds check
-
-    //Column creation number
 };
 
 //Calculates row content - Adds rows to UI
 function calcRows(){
     let startPos = 0;
     let endPos = 0;
+
+    const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
+    const numInputs = getMultiNumInputs();
 
     //Retrieves user inputs - Returns as an array
     function getMultiNumInputs(){
@@ -304,10 +305,6 @@ function calcRows(){
             };
         };
     };
-
-    
-    const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
-    const numInputs = getMultiNumInputs();
 
     generateRows(numOfPost, createTimesTable(numInputs, numOfPost));
     inputClear();
