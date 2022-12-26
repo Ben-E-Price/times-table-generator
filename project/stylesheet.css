@@ -6,13 +6,14 @@
 
 input {
     outline: none;
-    border: 1px solid black ;
+    border: 1px solid transparent;
+    background-color: rgba(0, 0, 0, 0.068);
     border-radius: 5px;
 }
-/* 
+
 input:focus{
-    border: 1px solid rgb(1, 175, 68) ;
-} */
+    background-color: rgba(0, 0, 0, 0.322);
+}
 
 .in-error{
     border: 1px solid red;

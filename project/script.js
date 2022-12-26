@@ -27,7 +27,7 @@ const inputBlocking = {
             //Applys error styling
             function errorStyle(eventIn){
                 const element = eventIn.target;
-                error.timedClass(element, 0.5);
+                error.timedClass(element, 0.25);
             };
 
             if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
@@ -204,9 +204,8 @@ const error = {
     //Adds - removes class on timer
     timedClass: function(element, removeTime) {
         removeTime = removeTime * 1000;
-        
         this.addClass(element);
-        const timer = setTimeout(this.removeClass(element), removeTime);
+        setTimeout(() => this.removeClass(element), removeTime);
     },
 
     //Required feilds check
