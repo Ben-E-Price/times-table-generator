@@ -110,10 +110,20 @@ const table = {
 
     colLimit: 10,
 
+    currentColumns: function(){
+        return this.columnRoot.length
+    },
+
+    //Creates limit based on current number of columns already present
+    currentLimit : function(){
+        return this.colLimit - this.currentColumns() + 1; //Accounts for current number of columns
+    },
+
     //Creates column
     createColumn: function(){
-        const length = this.columnRoot.length;
+        const length = this.currentColumns();
         const colLimit = this.colLimit;
+        const errorString = `Error maximun number of columns created`;
 
         //Creates table column elements
         const createTalbeElement = (event) => {
@@ -133,27 +143,36 @@ const table = {
         if(length <= colLimit){
             createTalbeElement();
             createInputElements();
+        } else {
+            this.validColNumCheck(length, errorString);
         };
 
     },
 
     //Creates x number of colums
     createMultiCols: function(){
-        const numOfCols = Number(this.inputs.inNumOfCols.value);
+        const numOfColsCreate = Number(this.inputs.inNumOfCols.value);
+        const errorString = `Error you may only create ${this.colLimit} columns, Please enter ${this.currentLimit()} or less`
 
         //Creates columns if "numOfCols" < colLimit
-        if(this.validColNumCheck(numOfCols ,this.colLimit)) {
-            for(let i = 0; i < numOfCols; i ++){
+        if(this.validColNumCheck(numOfColsCreate, errorString)) {
+            for(let i = 0; i < numOfColsCreate; i ++){
                this.createColumn();
             };
         };
     },
 
     //Blocks/Allows column creation dependent on "colLimit" 
-    validColNumCheck(colNumIn, colLimit) {
+    validColNumCheck(colNumIn, errorMsg) {
+        const colLimit = this.currentLimit();
         
-        colLimit -= table.columnRoot.length -1; //Accounts for current number of columns
-        return colNumIn > colLimit ? false : true;
+        //Display error message
+        function colError(errorMsg) {
+            alert(errorMsg);
+            return false;
+        };
+
+        return colNumIn > colLimit ? colError(errorMsg) : true;
     },
 
     //Removes columns - Prevents intial 2 being removed
