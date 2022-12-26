@@ -18,16 +18,27 @@ const inputBlocking = {
     //Prevents elements functionality executing
     block: function(eventIn) {
         const eventType = eventIn.type;
-        console.log(eventIn.target)
+
         //Checks + blocks ilegal chars on keydown events
         function charBlock(eventIn){
+            //Legal charecters
             const validChars = RegExp(["[0-9]"]);
+
+            //Applys error styling
+            function errorStyle(eventIn){
+                const element = eventIn.target;
+                error.timedClass(element, 0.5);
+            };
+
             if(validChars.test(eventIn.key) || eventIn.ctrlKey || eventIn.altKey || eventIn.key.length !== 1){
                 return        
             } else {
                 eventIn.preventDefault();
+                errorStyle(eventIn);
             };
         };
+
+
 
         if(eventType === "keydown"){
            charBlock(eventIn);
@@ -179,7 +190,7 @@ const table = {
 
 };
 
-const errorCheck = {
+const error = {
     errorClass: "in-error",
 
     addClass: function(element) {
@@ -192,8 +203,10 @@ const errorCheck = {
 
     //Adds - removes class on timer
     timedClass: function(element, removeTime) {
+        removeTime = removeTime * 1000;
+        
         this.addClass(element);
-        const timer = setTimeout(this.removeClass(element), timer);
+        const timer = setTimeout(this.removeClass(element), removeTime);
     },
 
     //Required feilds check
