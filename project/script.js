@@ -326,6 +326,9 @@ function calcRows(){
     //Checks all required inputs contain a value
     function checkReqInputs() {
         const reqElements = document.getElementsByClassName("req-field");
+        const emptyElements = Array.from(reqElements).filter(element => (element.textLength === 0));
+
+        return emptyElements.length === 0? true : false;
     };
 
     checkReqInputs();
