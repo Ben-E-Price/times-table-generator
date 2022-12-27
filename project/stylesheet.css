@@ -3,6 +3,11 @@
     margin: 0px;
 }
 
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 input {
     outline: none;
