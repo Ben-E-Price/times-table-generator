@@ -326,8 +326,18 @@ function calcRows(){
     //Checks all required inputs contain a value
     function checkReqInputs() {
         const reqElements = document.getElementsByClassName("req-field");
-        const emptyElements = Array.from(reqElements).filter(element => (element.textLength === 0));
 
+        const emptyElements = Array.from(reqElements).filter((element) => {
+            if(element.textLength === 0){
+                error.addClass(element);
+                return element;
+            } else {
+                error.removeClass(element);
+                return false;
+            };
+        });
+
+        //True if empty - False if contains elements
         return emptyElements.length === 0? true : false;
     };
 
