@@ -19,10 +19,10 @@ input:focus{
     border: 1px solid red;
 }
 
-/* Table Stlying */
-/* table{
+/* Table Stlying  */
+table {
     display: table;
-} */
+} 
 
 .column-root{
     display: table-cell;
