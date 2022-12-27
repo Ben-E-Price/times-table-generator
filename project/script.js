@@ -327,6 +327,7 @@ function calcRows(){
     function checkReqInputs() {
         const reqElements = document.getElementsByClassName("req-field");
 
+        //Create list of empty elements
         const emptyElements = Array.from(reqElements).filter((element) => {
             if(element.textLength === 0){
                 error.addClass(element);
@@ -338,13 +339,15 @@ function calcRows(){
         });
 
         //True if empty - False if contains elements
-        return emptyElements.length === 0? true : false;
+        return emptyElements.length === 0 ? true : false;
     };
 
-    checkReqInputs();
-    generateRows(numOfPost, createTimesTable(numInputs, numOfPost));
-    inputClear();
-    inputBlocking.tableCreated = true;
+    //Creates table if all required inputs contain values
+    if(checkReqInputs()) {
+        generateRows(numOfPost, createTimesTable(numInputs, numOfPost));
+        inputClear();
+        inputBlocking.tableCreated = true;
+    };
 };
 
 //Clear value content from all inputs
