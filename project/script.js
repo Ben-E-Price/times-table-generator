@@ -226,8 +226,6 @@ const error = {
         this.addClass(element);
         setTimeout(() => this.removeClass(element), removeTime);
     },
-
-    //Required feilds check
 };
 
 //Calculates row content - Adds rows to UI
@@ -325,6 +323,12 @@ function calcRows(){
         };
     };
 
+    //Checks all required inputs contain a value
+    function checkReqInputs() {
+        const reqElements = document.getElementsByClassName("req-field");
+    };
+
+    checkReqInputs();
     generateRows(numOfPost, createTimesTable(numInputs, numOfPost));
     inputClear();
     inputBlocking.tableCreated = true;
