@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
     margin: 0px;
+    
+
+    --global-vert-margin: 15px 0px
 }
 
 main{
@@ -31,11 +34,33 @@ input:focus{
 /* Table Stlying  */
 
 #table-wrapper{
+    margin: var(--global-vert-margin);
     align-self: flex-start;
 }
 
+table{
+    padding: 0px;
+
+}
+
 .column-root{
+    --col-width: 125px;
+
     display: table-cell;
+    width: var(--col-width);
+    height: 30px;
+    border-right: 1px solid black;
+}
+
+th{
+    width: inherit;
+    height: inherit;
+    padding: 0px;
+    background-color: aqua;
+}
+
+td:nth-child(odd){
+    background-color: aliceblue;
 }
 
 .row{
@@ -44,8 +69,9 @@ input:focus{
 
 #multi-num-in-wrapper{
     width: max-content;
+    margin: 0px 0px 0px 150px;
 }
 
 .in-multi-num{
-    width: 100px;
+    /* width: var(--col-width); */
 }
