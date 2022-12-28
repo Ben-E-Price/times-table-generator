@@ -12,28 +12,33 @@
 
     <main id="page-content" class="flex-col">
         <div id="input-wrapper">
-            <span id="position-settings">
-                <button id="btn-calc" class="btn-clk-blk">Calculate</button>
-                <input id="in-pos-start" class="num-input req-field" placeholder="Multiplication start position">
-                <input id="in-pos-end" class="num-input req-field" placeholder="Multiplication end position">
-            </span>
 
             <div id="table-inputs">
                 
-                <span>
-                    <h3>Single Column Controls</h3>
+                <h3>Column Controls</h3>
+
+                <div>
                     <button id="btn-add-col" class="btn-clk-blk">+</button>
                     <button id="btn-remove-col" class="btn-clk-blk">-</button>
-                </span>
+                </div>
 
-                <span>
-                    <h3>Columns by Number</h3>
+                <div> 
                     <input type="text" id="in-num-of-cols" class="num-input" placeholder="Please enter a number">
                     <button id="btn-create-cols" class="btn-clk-blk">Create Columns</button>
-                    <button id="btn-reset-table">Reset Table</button>
-                </span>
+                </div>
 
             </div>
+
+            <div id="pos-inputs">
+                <input id="in-pos-start" class="num-input req-field" placeholder="Multiplication start position">
+                <input id="in-pos-end" class="num-input req-field" placeholder="Multiplication end position">
+            </div>
+
+            <div>
+                <button id="btn-reset-table">Reset Table</button>
+                <button id="btn-calc" class="btn-clk-blk">Calculate</button>
+            </div>
+
         </div>
 
         <div id="table-wrapper">
