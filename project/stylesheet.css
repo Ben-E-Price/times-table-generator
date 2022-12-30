@@ -27,8 +27,19 @@ input:focus{
     align-items: center;
 }
 
+.flex {
+    display: flex;
+}
+
 .in-error{
     border: 1px solid red;
+}
+
+/* Inputs panel styling */
+
+#input-wrapper {
+    margin: var(--global-vert-margin);
+    align-items: center;
 }
 
 /* Table Stlying  */

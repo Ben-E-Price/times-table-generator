@@ -13,12 +13,13 @@
     <main id="page-content" class="flex-col">
         <div id="input-wrapper">
 
-            <div id="table-inputs">
+            <div id="controls-col" class="flex-col">
                 
                 <h3>Column Controls</h3>
 
                 <div>
                     <button id="btn-add-col" class="btn-clk-blk">+</button>
+                    <p>Single Column Controls</p>
                     <button id="btn-remove-col" class="btn-clk-blk">-</button>
                 </div>
 
@@ -29,16 +30,19 @@
 
             </div>
 
-            <div id="pos-inputs">
-                <input id="in-pos-start" class="num-input req-field" placeholder="Multiplication start position">
-                <input id="in-pos-end" class="num-input req-field" placeholder="Multiplication end position">
-            </div>
+            <div id="controls-table">
 
-            <div>
-                <button id="btn-reset-table">Reset Table</button>
-                <button id="btn-calc" class="btn-clk-blk">Calculate</button>
-            </div>
+                <div id="pos-inputs">
+                    <input id="in-pos-start" class="num-input req-field" placeholder="Multiplication start position">
+                    <input id="in-pos-end" class="num-input req-field" placeholder="Multiplication end position">
+                </div>
 
+                <div>
+                    <button id="btn-reset-table">Reset Table</button>
+                    <button id="btn-calc" class="btn-clk-blk">Calculate</button>
+                </div>
+
+            </div>
         </div>
 
         <div id="table-wrapper">
