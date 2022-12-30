@@ -1,4 +1,6 @@
-*{
+/* Tag Type*/
+
+* {
     box-sizing: border-box;
     margin: 0px;
     
@@ -6,7 +8,7 @@
     --global-vert-margin: 15px 0px
 }
 
-main{
+main {
     margin: 0px 100px;
 }
 
@@ -17,8 +19,21 @@ input {
     border-radius: 5px;
 }
 
-input:focus{
+input:focus {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+button {
+    width: 100px;
+    height: 30px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+button:hover {
+    border: 1px solid black;
 }
 
 /*Display Class's */
@@ -33,30 +48,40 @@ input:focus{
     display: flex;
 }
 
-.in-error{
+.in-error {
     border: 1px solid red;
 }
 
-/* Inputs panel styling */
+/* Header */
+
+#header-wrapper {
+    padding: 15px 0px;
+}
+
+/* Inputs Panel */
 
 #input-wrapper {
     margin: var(--global-vert-margin);
     align-items: center;
 }
 
-/* Table Stlying  */
+.btn-sin {
+    width: 25px;
+}
 
-#table-wrapper{
+/* Table*/
+
+#table-wrapper {
     margin: var(--global-vert-margin);
     align-self: flex-start;
 }
 
-table{
+table {
     padding: 0px;
 
 }
 
-.column-root{
+.column-root {
     --col-width: 125px;
 
     display: table-cell;
@@ -65,14 +90,14 @@ table{
     border-right: 1px solid black;
 }
 
-th{
+th {
     width: inherit;
     height: inherit;
     padding: 0px;
     background-color: aqua;
 }
 
-td:nth-child(odd){
+td:nth-child(odd) {
     background-color: aliceblue;
 }
 
@@ -80,11 +105,11 @@ td:nth-child(odd){
     display: block;
 }
 
-#multi-num-in-wrapper{
+#multi-num-in-wrapper {
     width: max-content;
     margin: 0px 0px 0px 150px;
 }
 
-.in-multi-num{
+.in-multi-num {
     /* width: var(--col-width); */
 }
