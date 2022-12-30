@@ -21,6 +21,8 @@ input:focus{
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+/*Display Class's */
+
 .flex-col {
     display: flex;
     flex-direction: column;
