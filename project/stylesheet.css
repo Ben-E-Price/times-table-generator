@@ -6,7 +6,7 @@
 
     /* Common Spacing Values */
     --global-vert-margin: 10px 0px;
-    --global-padding: 10px 0px;
+    --global-padding: 10px;
 }
 
 main {
@@ -80,6 +80,8 @@ button:hover {
 
 .input-panel {
     padding: var(--global-padding);
+    width: 50%;
+    height: 100%;
 }
 
 .btn-sin {
