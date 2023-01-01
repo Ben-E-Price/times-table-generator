@@ -3,9 +3,8 @@
 * {
     box-sizing: border-box;
     margin: 0px;
-    
 
-    --global-vert-margin: 15px 0px
+    --global-vert-margin: 5px 0px
 }
 
 main {
@@ -55,14 +54,22 @@ button:hover {
 /* Header */
 
 #header-wrapper {
-    padding: 15px 0px;
+    padding: 5px 0px;
 }
 
-/* Inputs Panel */
+/* Inputs Panels */
 
 #input-wrapper {
     margin: var(--global-vert-margin);
     align-items: center;
+}
+
+#controls-col {
+    flex-wrap: wrap;
+}
+
+#controls-head {
+    flex-basis: 100%;
 }
 
 .btn-sin {
