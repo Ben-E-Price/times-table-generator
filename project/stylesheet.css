@@ -4,7 +4,9 @@
     box-sizing: border-box;
     margin: 0px;
 
-    --global-vert-margin: 5px 0px
+    /* Common Spacing Values */
+    --global-vert-margin: 10px 0px;
+    --global-padding: 10px 0px;
 }
 
 main {
@@ -57,12 +59,13 @@ button:hover {
 /* Header */
 
 #header-wrapper {
-    padding: 5px 0px;
+    padding: 10px 0px;
 }
 
 /* Inputs Panels */
 
 #input-wrapper {
+    padding: var(--global-padding);
     margin: var(--global-vert-margin);
     align-items: center;
 }
@@ -73,6 +76,10 @@ button:hover {
 
 #controls-head {
     flex-basis: 100%;
+}
+
+.input-panel {
+    padding: var(--global-padding);
 }
 
 .btn-sin {
@@ -88,7 +95,6 @@ button:hover {
 
 table {
     padding: 0px;
-
 }
 
 .column-root {
