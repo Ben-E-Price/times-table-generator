@@ -9,6 +9,8 @@
     --global-padding: 10px;
     --global-gap: 10px;
 
+    --col-width: 125px;
+
 }
 
 main {
@@ -111,7 +113,6 @@ table {
 }
 
 .column-root {
-    --col-width: 125px;
     display: table-cell;
     width: var(--col-width);
     height: 30px;
@@ -137,9 +138,14 @@ td:nth-child(odd) {
 
 #multi-num-in-wrapper {
     width: max-content;
-    margin: 0px 0px 0px 150px;
+    margin: 0px 0px 0px 125px;
+}
+
+.multi-num-cont {
+    display: inline-flex;
+    width: var(--col-width);
 }
 
 .in-multi-num {
-    /* width: var(--col-width); */
+    width: calc(var(--col-width) - 10px);
 }
