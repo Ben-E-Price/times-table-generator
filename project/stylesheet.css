@@ -104,6 +104,7 @@ button:hover {
 
 table {
     padding: 0px;
+    border-collapse: collapse;
 }
 
 .column-root {
@@ -125,9 +126,15 @@ td:nth-child(odd) {
     background-color: aliceblue;
 }
 
+#table-body {
+    gap: 0px;
+}
+
 .row{
     display: block;
 }
+
+/* Table inputs */
 
 #multi-num-in-wrapper {
     width: max-content;
