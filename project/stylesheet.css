@@ -69,7 +69,6 @@ button:hover {
 /* Inputs Panels */
 
 #input-wrapper {
-    padding: var(--global-padding);
     align-items: center;
 }
 
@@ -83,12 +82,13 @@ button:hover {
 
 .controls-wrapper {
     width: 100%;
+    padding: var(--global-padding);
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 .input-panel {
     padding: var(--global-padding);
-    border-radius: 10px;
-    border: 1px solid black;
     flex-basis: 49%;
 }
 
