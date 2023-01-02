@@ -233,9 +233,6 @@ function calcRows(){
     let startPos = 0;
     let endPos = 0;
 
-    const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
-    const numInputs = getMultiNumInputs();
-
     //Retrieves user inputs - Returns as an array
     function getMultiNumInputs(){
         const inputFields = document.querySelectorAll(".in-multi-num");
@@ -341,6 +338,9 @@ function calcRows(){
         //True if empty - False if contains elements
         return emptyElements.length === 0 ? true : false;
     };
+
+    const numOfPost = calcNumOfPost(calcInputs.getPostInputs());
+    const numInputs = getMultiNumInputs();
 
     //Creates table if all required inputs contain values
     if(checkReqInputs()) {
