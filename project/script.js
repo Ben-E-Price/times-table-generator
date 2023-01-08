@@ -243,10 +243,22 @@ const stickyElements = {
             return element.getBoundingClientRect().y
         };
 
+        //Sets elements CSS top propertie value
+        function setStickyPos(element, position) {
+            element.style.top = `${String(position)}px`
+        };
+
         const boundingTop = getYPos(stickyObject.boundingArea);
         const stickyElTop = getYPos(stickyObject.sticky);
         const relativePos = boundingTop - stickyElTop;
 
+        //If false/ <= 0
+        if(!relativePos){
+            setStickyPos(stickyObject.sticky, stickyObject.currentPos);
+        } else {
+            stickyObject.currentPos += -1 //Increment position upwards
+            setStickyPos(stickyObject.sticky, stickyObject.currentPos);
+        };
     },
 };
 
