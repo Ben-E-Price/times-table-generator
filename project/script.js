@@ -236,15 +236,17 @@ const stickyElements = {
         currentPos: 0,
     },
 
-    stick: function(boundingArea, stickyElement) {
+    stick: function(stickyObject) {
         
         //Returns Y position coordinates of passed element
         function getYPos(element) {
             return element.getBoundingClientRect().y
         };
 
-        const boundingTop = getYPos(boundingArea);
-        const stickyElTop = getYPos(stickyElement);
+        const boundingTop = getYPos(stickyObject.boundingArea);
+        const stickyElTop = getYPos(stickyObject.sticky);
+        const relativePos = boundingTop - stickyElTop;
+
     },
 };
 
