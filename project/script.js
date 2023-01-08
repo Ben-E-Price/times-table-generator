@@ -231,8 +231,8 @@ const error = {
 const stickyElements = {
 
     tableElements: {
-        tableArea: document.querySelector("#table-wrapper"),
-        tableHeaders: document.getElementsByTagName("th"),
+        boundingArea: document.querySelector("#table-wrapper"),
+        sticky: document.getElementsByTagName("th"),
     },
 
 };
