@@ -102,9 +102,11 @@ button:hover {
 
 #table-wrapper {
     align-self: flex-start;
-    overflow-x: auto;
+    overflow: auto;
     width: 100%;
+    height: 500px;
     padding: var(--global-padding);
+    position: relative;
 }
 
 table {
@@ -124,6 +126,8 @@ th {
     height: inherit;
     padding: 0px;
     background-color: aqua;
+    position: relative;
+
 }
 
 td:nth-child(odd) {

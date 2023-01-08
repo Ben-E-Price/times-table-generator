@@ -375,3 +375,28 @@ table.inputs.btnCreateCols.addEventListener("click", function(){table.createMult
 table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
+
+
+//Test Code Sticky Elements
+const boundingElement = document.getElementById("table-wrapper") //Defines parent element - Child element sticks to/ is bound to
+const stickyElement = document.getElementsByTagName("th") //Defined child/sticky element 
+
+let currentPos = 0;
+
+//Global keydown event listner - Created for testing
+document.addEventListener("keydown", event => {
+    
+    const boundTop = tableEl.getBoundingClientRect().y; //Gets top position value of bounding element - Based on document cord
+    const stickyTop = tableHeader[0].getBoundingClientRect().y//Gets top position of sticky element - Based on document cord
+    const relativePos = headTopCal - topVal;//Works out diffrence between sticky element and bounding element
+
+    //If relativePos value <= 0 - Set position to currentPos, Else increment currentPos, Set stickyElement pos to currentPos
+    if(relativePos){
+        stickyElement[0].style.top = `${String(currentPos)}px`
+    } else {
+        currentPos += -1;
+        stickyElement[0].style.top = `${String(currentPos)}px`
+    }
+    
+    console.log(topVal, headTopCal, relPos, currentPos)//Value logging
+});
