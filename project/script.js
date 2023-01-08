@@ -83,11 +83,6 @@ const table = {
         btnResetCols: document.querySelector("#btn-reset-table"),
         inNumOfCols: document.querySelector("#in-num-of-cols"),
     },
-
-    stickyElements: {
-        tableArea: document.querySelector("#table-wrapper"),
-        tableHeaders: document.getElementsByTagName("th"),
-    },
     
     inMultiNumCont: document.getElementsByClassName("multi-num-cont"),
     inMultiNumRoot: document.querySelector("#multi-num-in-wrapper"),
@@ -231,6 +226,15 @@ const error = {
         this.addClass(element);
         setTimeout(() => this.removeClass(element), removeTime);
     },
+};
+
+const stickyElements = {
+
+    tableElements: {
+        tableArea: document.querySelector("#table-wrapper"),
+        tableHeaders: document.getElementsByTagName("th"),
+    },
+
 };
 
 //Calculates row content - Adds rows to UI
