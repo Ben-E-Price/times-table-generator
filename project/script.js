@@ -83,6 +83,11 @@ const table = {
         btnResetCols: document.querySelector("#btn-reset-table"),
         inNumOfCols: document.querySelector("#in-num-of-cols"),
     },
+
+    stickyElements: {
+        tableArea: document.querySelector("#table-wrapper"),
+        tableHeaders: document.getElementsByTagName("th"),
+    },
     
     inMultiNumCont: document.getElementsByClassName("multi-num-cont"),
     inMultiNumRoot: document.querySelector("#multi-num-in-wrapper"),
@@ -375,7 +380,6 @@ table.inputs.btnCreateCols.addEventListener("click", function(){table.createMult
 table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
-
 
 //Test Code Sticky Elements
 const boundingElement = document.getElementById("table-wrapper") //Defines parent element - Child element sticks to/ is bound to
