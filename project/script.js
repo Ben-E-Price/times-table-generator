@@ -235,6 +235,9 @@ const stickyElements = {
         sticky: document.getElementsByTagName("th"),
     },
 
+    stick: function(boundingArea, stickyElement) {
+
+    },
 };
 
 //Calculates row content - Adds rows to UI
