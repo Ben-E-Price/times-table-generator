@@ -237,6 +237,7 @@ const stickyElements = {
     },
 
     stick: function(stickyObject) {
+        console.log(stickyObject)
         
         //Returns Y position coordinates of passed element
         function getYPos(element) {
@@ -245,7 +246,6 @@ const stickyElements = {
 
         //Sets elements CSS top propertie value
         function setStickyPos(elements, position) {
-
             for(element of elements) {
                 element.style.top = `${String(position)}px`
             };
@@ -412,3 +412,7 @@ table.inputs.btnCreateCols.addEventListener("click", function(){table.createMult
 table.inputs.btnResetCols.addEventListener("click", function(){table.resetTable()});
 
 calcInputs.btnCalc.addEventListener("click", calcRows);
+
+//Sticky Table
+// stickyElements.tableElements.boundingArea.addEventListener("scroll", function(){stickyElements.stick(stickyElements.tableElements)});
+document.addEventListener("keydown", function(){stickyElements.stick(stickyElements.tableElements)});
