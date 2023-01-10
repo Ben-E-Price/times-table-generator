@@ -244,13 +244,16 @@ const stickyElements = {
         };
 
         //Sets elements CSS top propertie value
-        function setStickyPos(element, position) {
-            element.style.top = `${String(position)}px`
+        function setStickyPos(elements, position) {
+
+            for(element of elements) {
+                element.style.top = `${String(position)}px`
+            };
         };
 
         const boundingTop = getYPos(stickyObject.boundingArea);
-        const stickyElTop = getYPos(stickyObject.sticky);
-        const relativePos = boundingTop - stickyElTop;
+        const stickyElTop = getYPos(stickyObject.sticky[0]);
+        const relativePos = boundingTop - stickyElTop
 
         //If false/ <= 0
         if(!relativePos){
