@@ -236,6 +236,15 @@ const stickyElements = {
         currentPos: 0,
     },
 
+    observer: new IntersectionObserver(function(entries){
+        console.log("observer called", entries);
+
+    }, {
+        root: document.getElementById("table-wrapper"),
+        rootMargin: "-31px",
+        threshold: 0.1,
+    }),
+
     stick: function(stickyObject) {
         console.log(stickyObject)
         
@@ -263,6 +272,7 @@ const stickyElements = {
             setStickyPos(stickyObject.sticky, stickyObject.currentPos);
         };
     },
+
 };
 
 //Calculates row content - Adds rows to UI
@@ -415,4 +425,11 @@ calcInputs.btnCalc.addEventListener("click", calcRows);
 
 //Sticky Table
 // stickyElements.tableElements.boundingArea.addEventListener("scroll", function(){stickyElements.stick(stickyElements.tableElements)});
-document.addEventListener("keydown", function(){stickyElements.stick(stickyElements.tableElements)});
+// document.addEventListener("keydown", function(){stickyElements.stick(stickyElements.tableElements)});
+
+document.addEventListener("keydown", function(){});
+// stickyElements.observer.observe(stickyElements.tableElements.sticky);
+
+for(element of stickyElements.tableElements.sticky) {
+    stickyElements.observer.observe(element)
+};
