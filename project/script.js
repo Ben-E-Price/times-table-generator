@@ -233,16 +233,34 @@ const stickyElements = {
     tableElements: {
         boundingArea: document.querySelector("#table-wrapper"),
         sticky: document.getElementsByTagName("th"),
-        currentPos: 0,
+        initalDiffrence: 0,
     },
 
     observer: new IntersectionObserver(function(entries){
-        console.log("observer called", entries);
+        console.log(entries);
+        
+        if(!stickyElements.tableElements.initalDiffrence) {
+            const boundingTop = entries[0].rootBounds.y
+            const stickyTop = entries[0].boundingClientRect.y
+            stickyElements.tableElements.initalDiffrence = boundingTop - stickyTop;
+        }
+        const currentPos = entries[0].boundingClientRect.y
+        let height = entries[0].boundingClientRect.height
+        
+        // If entrie hits bounding area
+        if(!entries[0].isIntersecting){
+            height = height + height
+
+            for(let entry of entries){
+                // console.log(entry)
+                entry.target.style.top = `${String(height)}px`
+            };
+        };
 
     }, {
         root: document.getElementById("table-wrapper"),
-        rootMargin: "-31px",
-        threshold: 0.1,
+        // rootMargin: "-31px",
+        threshold: 1,
     }),
 
     stick: function(stickyObject) {
@@ -427,8 +445,6 @@ calcInputs.btnCalc.addEventListener("click", calcRows);
 // stickyElements.tableElements.boundingArea.addEventListener("scroll", function(){stickyElements.stick(stickyElements.tableElements)});
 // document.addEventListener("keydown", function(){stickyElements.stick(stickyElements.tableElements)});
 
-document.addEventListener("keydown", function(){});
-// stickyElements.observer.observe(stickyElements.tableElements.sticky);
 
 for(element of stickyElements.tableElements.sticky) {
     stickyElements.observer.observe(element)
