@@ -15,10 +15,22 @@
     --col-width: 125px;
 
     /* Colours */
-    --baby-blue: #D4F1F4;
-    --blue-green: #75E6DA;
-    --blue-grotto: #189AB4;
-    --navy-blue: #05445E;
+    --baby-blue-light: #D4F1F4;
+    --baby-blue-mid: #a9eff7;
+    --baby-blue-dark: #7ae9f5;
+
+    --blue-green-light: #a1e4dd;
+    --blue-green-mid: #75E6DA;
+    --blue-green-dark: #52e2d4;
+
+    --blue-grotto-light: #349fb4;
+    --blue-grotto-mid: #189AB4;
+    --blue-grotto-dark: #0797b4;
+
+    --navy-blue-light: #1f4758;
+    --navy-blue-mid: #11465e;
+    --navy-blue-dark: #05445E;
+
 }
 
 main {
@@ -28,12 +40,12 @@ main {
 input {
     outline: none;
     border: 1px solid transparent;
-    background-color: rgba(0, 0, 0, 0.06);
+    background-color: var(--blue-green-mid);
     border-radius: var(--border-rad-small);
 }
 
 input:focus {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--blue-green-light);
 }
 
 
@@ -41,13 +53,14 @@ button {
     width: 100px;
     height: 30px;
 
-    border: 1px solid var(--blue-grotto);
-    background-color: transparent;
+    border: solid 1px transparent;
+    background-color: var(--blue-green-mid);
     border-radius: var(--border-rad-small);
 }
 
 button:hover {
-    border: 1px solid var(--navy-blue);
+    border: 1px solid transparent;
+    background-color: var(--blue-green-light);
 }
 
 /*Display Class's */
@@ -95,6 +108,7 @@ button:hover {
     width: 100%;
     padding: var(--global-padding);
     border-radius: var(--boder-rad-large);
+    border: solid 1px var(--blue-grotto-mid);
 }
 
 .input-panel {
