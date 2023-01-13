@@ -41,12 +41,13 @@ button {
     width: 100px;
     height: 30px;
 
-    border: 1px solid transparent;
+    border: 1px solid var(--blue-grotto);
+    background-color: transparent;
     border-radius: var(--border-rad-small);
 }
 
 button:hover {
-    border: 1px solid black;
+    border: 1px solid var(--navy-blue);
 }
 
 /*Display Class's */
@@ -94,7 +95,6 @@ button:hover {
     width: 100%;
     padding: var(--global-padding);
     border-radius: var(--boder-rad-large);
-    border: 1px solid black;
 }
 
 .input-panel {
