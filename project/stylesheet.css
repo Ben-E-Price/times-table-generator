@@ -23,13 +23,8 @@
     --blue-green-mid: #75E6DA;
     --blue-green-dark: #52e2d4;
 
-    --blue-grotto-light: #349fb4;
-    --blue-grotto-mid: #189AB4;
-    --blue-grotto-dark: #0797b4;
+    --table-border-value: 1px solid black;
 
-    --navy-blue-light: #1f4758;
-    --navy-blue-mid: #11465e;
-    --navy-blue-dark: #05445E;
 
 }
 
@@ -110,7 +105,7 @@ button:hover {
     width: 100%;
     padding: var(--global-padding);
     border-radius: var(--boder-rad-large);
-    border: solid 1px var(--blue-grotto-mid);
+    border: solid 1px var(--blue-green-dark);
 }
 
 .input-panel {
@@ -146,7 +141,8 @@ th {
     height: inherit;
     padding: 0px;
     background-color: var(--baby-blue-dark);
-    /* border-radius: var(--border-rad-small); */
+    border-bottom: var(--table-border-value);
+    border-right: var(--table-border-value);
 }
 
 td {
@@ -163,6 +159,7 @@ td:nth-child(odd) {
 
 .row{
     display: block;
+    border-right: var(--table-border-value);
 }
 
 /* Table inputs */
