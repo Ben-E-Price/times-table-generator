@@ -80,6 +80,8 @@ button:hover {
     gap: var(--global-gap);
 }
 
+/* Error Class */
+
 .in-error {
     border: 1px solid red;
 }
@@ -137,19 +139,22 @@ table {
     display: table-cell;
     width: var(--col-width);
     height: 30px;
-    /* border-right: 1px solid black; */
 }
 
 th {
     width: inherit;
     height: inherit;
     padding: 0px;
-    background-color: aqua;
-    border-radius: var(--border-rad-small);
+    background-color: var(--baby-blue-dark);
+    /* border-radius: var(--border-rad-small); */
+}
+
+td {
+    background-color: var(--baby-blue-mid);
 }
 
 td:nth-child(odd) {
-    background-color: aliceblue;
+    background-color: var(--baby-blue-light);
 }
 
 #table-body {
