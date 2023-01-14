@@ -166,7 +166,7 @@ td:nth-child(odd) {
 
 #multi-num-in-wrapper {
     width: max-content;
-    margin: 0px 0px 0px 125px;
+    margin: 10px 0px 10px 125px;
 }
 
 .multi-num-cont {
