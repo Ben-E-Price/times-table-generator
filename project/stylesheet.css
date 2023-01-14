@@ -176,4 +176,9 @@ td:nth-child(odd) {
 
 .in-multi-num {
     width: calc(var(--col-width) - 10px);
+    background-color: var(--baby-blue-mid);
+}
+
+.in-multi-num:focus {
+    background-color: var(--baby-blue-light);
 }
